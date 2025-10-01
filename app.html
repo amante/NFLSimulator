@@ -585,8 +585,7 @@
     const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
     const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
       const s = String(r[h] ?? '');
-      return /[",
-]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+      return /[",]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
     }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
@@ -597,11 +596,9 @@
   });
       populateFilters(SCHEDULE_ALL);
     applyFilters();
-  });
       SCHEDULE_ALL = await loadSchedule2025(false);
     populateFilters(SCHEDULE_ALL);
     applyFilters();
-  });
   </script>
 
 <script>
