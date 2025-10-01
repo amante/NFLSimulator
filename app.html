@@ -617,8 +617,7 @@
     const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
     const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
       const s = String(r[h] ?? '');
-      return (s.includes('"') || s.includes(',') || s.includes('
-')) ? `"${s.replace(/"/g, '""')}"` : s;
+      return (s.includes('"') || s.includes(',') || s.includes('\n')) ? `"${s.replace(/"/g, '""')}"` : s;
     }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
