@@ -1,4 +1,1967 @@
 {
   "year": 2025,
-  "games": []
+  "games": [
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "CLEVELAND BROWNS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "MIAMI DOLPHINS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "PITTSBURGH STEELERS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "13:00",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "16:05",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "16:05",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "16:25",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "16:25",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 1,
+      "Date": "2025-09-07",
+      "TimeET": "20:20",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "DETROIT LIONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "BUFFALO BILLS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "13:00",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "16:05",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "16:05",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "16:25",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-14",
+      "TimeET": "20:20",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 2,
+      "Date": "2025-09-15",
+      "TimeET": "22:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "PITTSBURGH STEELERS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "13:00",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "16:05",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "16:05",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "16:25",
+      "AwayTeam": "DALLAS COWBOYS",
+      "HomeTeam": "CHICAGO BEARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "16:25",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 3,
+      "Date": "2025-09-21",
+      "TimeET": "20:20",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "ATLANTA FALCONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "DETROIT LIONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "13:00",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "16:05",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "16:05",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "16:25",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "16:25",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-28",
+      "TimeET": "20:20",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 4,
+      "Date": "2025-09-29",
+      "TimeET": "20:15",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "DALLAS COWBOYS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "MIAMI DOLPHINS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "13:00",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "16:05",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "16:05",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "16:25",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "16:25",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 5,
+      "Date": "2025-10-05",
+      "TimeET": "20:20",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "DALLAS COWBOYS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "16:05",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "16:25",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "16:25",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-12",
+      "TimeET": "20:20",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 6,
+      "Date": "2025-10-13",
+      "TimeET": "20:15",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "CHICAGO BEARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "MIAMI DOLPHINS",
+      "HomeTeam": "CLEVELAND BROWNS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "13:00",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "16:05",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "16:05",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "16:25",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "16:25",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-19",
+      "TimeET": "20:20",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 7,
+      "Date": "2025-10-20",
+      "TimeET": "22:00",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "BUFFALO BILLS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "13:00",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "16:05",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "16:25",
+      "AwayTeam": "DALLAS COWBOYS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "16:25",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 8,
+      "Date": "2025-10-26",
+      "TimeET": "20:20",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "MINNESOTA VIKINGS",
+      "HomeTeam": "DETROIT LIONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "13:00",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "16:05",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "16:05",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "16:25",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 9,
+      "Date": "2025-11-02",
+      "TimeET": "20:20",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "CHICAGO BEARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "BUFFALO BILLS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "13:00",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "16:05",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "16:25",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "16:25",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 10,
+      "Date": "2025-11-09",
+      "TimeET": "20:20",
+      "AwayTeam": "PITTSBURGH STEELERS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "ATLANTA FALCONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "16:05",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "16:05",
+      "AwayTeam": "SAN FRANCISCO 49ERS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "16:25",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "CLEVELAND BROWNS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "16:25",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 11,
+      "Date": "2025-11-16",
+      "TimeET": "20:20",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "DETROIT LIONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "MINNESOTA VIKINGS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "16:05",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "16:05",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "16:25",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "16:25",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 12,
+      "Date": "2025-11-23",
+      "TimeET": "20:20",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-27",
+      "TimeET": "16:30",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-27",
+      "TimeET": "20:20",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "16:05",
+      "AwayTeam": "MINNESOTA VIKINGS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "16:25",
+      "AwayTeam": "BUFFALO BILLS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "16:25",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 13,
+      "Date": "2025-11-30",
+      "TimeET": "20:20",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "CLEVELAND BROWNS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "MIAMI DOLPHINS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "13:00",
+      "AwayTeam": "PITTSBURGH STEELERS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "16:05",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "16:25",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "16:25",
+      "AwayTeam": "LOS ANGELES RAMS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 14,
+      "Date": "2025-12-07",
+      "TimeET": "20:20",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "BUFFALO BILLS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "13:00",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "16:25",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "16:25",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "LOS ANGELES RAMS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "16:25",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "16:25",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "16:25",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "SEATTLE SEAHAWKS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 15,
+      "Date": "2025-12-14",
+      "TimeET": "20:20",
+      "AwayTeam": "MINNESOTA VIKINGS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-20",
+      "TimeET": "",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "WASHINGTON COMMANDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "DALLAS COWBOYS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW YORK JETS",
+      "HomeTeam": "NEW ORLEANS SAINTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "MINNESOTA VIKINGS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "BALTIMORE RAVENS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "16:05",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "16:05",
+      "AwayTeam": "ATLANTA FALCONS",
+      "HomeTeam": "ARIZONA CARDINALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "16:25",
+      "AwayTeam": "PITTSBURGH STEELERS",
+      "HomeTeam": "DETROIT LIONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "16:25",
+      "AwayTeam": "LAS VEGAS RAIDERS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 16,
+      "Date": "2025-12-21",
+      "TimeET": "20:20",
+      "AwayTeam": "CINCINNATI BENGALS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-25",
+      "TimeET": "16:30",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-25",
+      "TimeET": "20:15",
+      "AwayTeam": "DENVER BRONCOS",
+      "HomeTeam": "KANSAS CITY CHIEFS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "TENNESSEE TITANS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "13:00",
+      "AwayTeam": "JACKSONVILLE JAGUARS",
+      "HomeTeam": "INDIANAPOLIS COLTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "13:00",
+      "AwayTeam": "TAMPA BAY BUCCANEERS",
+      "HomeTeam": "MIAMI DOLPHINS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "13:00",
+      "AwayTeam": "NEW ENGLAND PATRIOTS",
+      "HomeTeam": "NEW YORK JETS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "16:25",
+      "AwayTeam": "PHILADELPHIA EAGLES",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-28",
+      "TimeET": "20:20",
+      "AwayTeam": "CHICAGO BEARS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "GREEN BAY PACKERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "HOUSTON TEXANS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 17,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "CAROLINA PANTHERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "NEW ORLEANS SAINTS",
+      "HomeTeam": "ATLANTA FALCONS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "NEW YORK GIANTS",
+      "HomeTeam": "BUFFALO BILLS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "DETROIT LIONS",
+      "HomeTeam": "CHICAGO BEARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "CLEVELAND BROWNS",
+      "HomeTeam": "CINCINNATI BENGALS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "LOS ANGELES CHARGERS",
+      "HomeTeam": "DENVER BRONCOS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "KANSAS CITY CHIEFS",
+      "HomeTeam": "LAS VEGAS RAIDERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "ARIZONA CARDINALS",
+      "HomeTeam": "LOS ANGELES CHARGERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "GREEN BAY PACKERS",
+      "HomeTeam": "MINNESOTA VIKINGS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "MIAMI DOLPHINS",
+      "HomeTeam": "NEW ENGLAND PATRIOTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "DALLAS COWBOYS",
+      "HomeTeam": "NEW YORK GIANTS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "WASHINGTON COMMANDERS",
+      "HomeTeam": "PHILADELPHIA EAGLES",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "BALTIMORE RAVENS",
+      "HomeTeam": "PITTSBURGH STEELERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "SEATTLE SEAHAWKS",
+      "HomeTeam": "SAN FRANCISCO 49ERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "CAROLINA PANTHERS",
+      "HomeTeam": "TAMPA BAY BUCCANEERS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "TENNESSEE TITANS",
+      "HomeTeam": "JACKSONVILLE JAGUARS",
+      "Network": "",
+      "Notes": ""
+    },
+    {
+      "Week": 18,
+      "Date": "2025-12-29",
+      "TimeET": "",
+      "AwayTeam": "INDIANAPOLIS COLTS",
+      "HomeTeam": "HOUSTON TEXANS",
+      "Network": "",
+      "Notes": ""
+    }
+  ]
 }

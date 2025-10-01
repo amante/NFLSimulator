@@ -3,7 +3,7 @@ import { APP_VERSION, BUILD_TIME } from './version.js';
 import { renderBarChart } from './charts.js';
 import { loadTeams, loadPlayers, loadMeta, clearAll } from './storage.js';
 import { SCHEDULE_2025 } from './schedule.js';
-import { loadCachedSchedule } from './scheduleLoader.js';
+import { loadCachedSchedule, loadSchedule2025 } from './scheduleLoader.js';
 
 
 // Show version/build
@@ -21,12 +21,12 @@ const state = {
 };
 
   // Tabs
-  const tabBtnTeams = document.getElementById('tabBtnTeams');
-  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  const tabBtnSummary = document.getElementById('tabBtnSummary');
-  const tabTeams = document.getElementById('tabTeams');
-  const tabPlayers = document.getElementById('tabPlayers');
-  const tabSummary = document.getElementById('tabSummary');
+  var tabBtnTeams = document.getElementById('tabBtnTeams');
+  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  var tabBtnSummary = document.getElementById('tabBtnSummary');
+  var tabTeams = document.getElementById('tabTeams');
+  var tabPlayers = document.getElementById('tabPlayers');
+  var tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
@@ -73,12 +73,12 @@ const els = {
 };
 
   // Tabs
-  const tabBtnTeams = document.getElementById('tabBtnTeams');
-  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  const tabBtnSummary = document.getElementById('tabBtnSummary');
-  const tabTeams = document.getElementById('tabTeams');
-  const tabPlayers = document.getElementById('tabPlayers');
-  const tabSummary = document.getElementById('tabSummary');
+  var tabBtnTeams = document.getElementById('tabBtnTeams');
+  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  var tabBtnSummary = document.getElementById('tabBtnSummary');
+  var tabTeams = document.getElementById('tabTeams');
+  var tabPlayers = document.getElementById('tabPlayers');
+  var tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
@@ -97,8 +97,13 @@ const els = {
 function loadAll() {
   state.teams.raw = loadTeams();
   state.players.raw = loadPlayers();
-  const cached = loadCachedSchedule();
-  state.games.raw = (Array.isArray(cached) && cached.length) ? cached : (Array.isArray(SCHEDULE_2025) ? SCHEDULE_2025 : []);
+  let cached = loadCachedSchedule();
+  if (Array.isArray(cached) && cached.length) {
+    state.games.raw = cached;
+  } else {
+    try { state.games.raw = await loadSchedule2025(); }
+    catch { state.games.raw = Array.isArray(SCHEDULE_2025) ? SCHEDULE_2025 : []; }
+  }
   state.teams.view = state.teams.raw;
   state.players.view = state.players.raw;
   state.games.view = state.games.raw;
@@ -117,12 +122,12 @@ function updateMeta() {
     const counts = meta.counts || {teams: state.teams.raw.length, players: state.players.raw.length};
 
   // Tabs
-  const tabBtnTeams = document.getElementById('tabBtnTeams');
-  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  const tabBtnSummary = document.getElementById('tabBtnSummary');
-  const tabTeams = document.getElementById('tabTeams');
-  const tabPlayers = document.getElementById('tabPlayers');
-  const tabSummary = document.getElementById('tabSummary');
+  var tabBtnTeams = document.getElementById('tabBtnTeams');
+  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  var tabBtnSummary = document.getElementById('tabBtnSummary');
+  var tabTeams = document.getElementById('tabTeams');
+  var tabPlayers = document.getElementById('tabPlayers');
+  var tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
@@ -249,9 +254,13 @@ els.datePicker.addEventListener('change', () => {
 });
 els.prevDay.addEventListener('click', () => adjustDate(-1));
 els.nextDay.addEventListener('click', () => adjustDate(1));
-els.refreshGames.addEventListener('click', () => {
-  const cached = loadCachedSchedule();
-  state.games.raw = (Array.isArray(cached) && cached.length) ? cached : (Array.isArray(SCHEDULE_2025) ? SCHEDULE_2025 : []);
+els.refreshGames.addEventListener('click', async () => {
+  let cached = loadCachedSchedule();
+  if (Array.isArray(cached) && cached.length) {
+    state.games.raw = cached;
+  } else {
+    try { state.games.raw = await loadSchedule2025(); } catch { state.games.raw = state.games.raw || []; }
+  }
   renderSummaryForDate(els.datePicker.value || uniqueGameDates()[0] || '');
 });
 

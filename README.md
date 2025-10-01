@@ -102,3 +102,8 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 ## v3.10.5: Preempaquetar Offline + Service Worker
 - Botón **Preempaquetar (offline ahora)** en *Schedule* que baja las 18 semanas y descarga `data/schedule_2025.json` listo para subir al repo.
 - Service Worker (`sw.js`) sirve `data/schedule_2025.json` desde caché cuando estás offline.
+
+## v3.10.6: Schedule sólo JSON
+- Eliminada la búsqueda online del calendario; ahora **solo** se carga `data/schedule_2025.json`.
+- El tab **Schedule** muestra botón **Releer JSON** y **Exportar CSV**.
+- El **Resumen** del viewer usa el cache si existe; si no, intenta leer el JSON y, en última instancia, cae al sample embebido.

@@ -469,10 +469,9 @@
           <label class="label">Team</label>
           <select id="schedTeam" class="input" style="max-width:160px"></select>
           <button id="schedExport" class="btn outline" type="button">Exportar CSV</button>
-<button id="schedRefreshWeb" class="btn secondary" type="button">Refrescar de Internet</button>
-<button id="schedUseOffline" class="btn ghost" type="button">Usar offline</button>
-<button id="schedSaveOffline" class="btn ghost" type="button">Guardar JSON offline</button>
-<button id="schedPrepack" class="btn" type="button">Preempaquetar (offline ahora)</button>
+<button id="schedExportFull" class="btn outline" type="button">Exportar CSV (full temporada)</button>
+<button id="schedReload" class="btn secondary" type="button">Releer JSON</button>
+
         </div>
         <div class="subtitle"><span id="schedInfo"></span> <span id="schedSource" class="badge" style="margin-left:8px">—</span></div>
         <div id="offlineNotice" class="notice" style="display:none">Estás sin conexión. Se usará el JSON offline o el cache local.</div>
@@ -494,7 +493,7 @@
 <script type="module">
   import { APP_VERSION, BUILD_TIME } from './js/version.js';
   import { renderTable } from './js/table.js';
-  import { loadSchedule2025, loadCachedSchedule, downloadScheduleJSON, getScheduleSource } from './js/scheduleLoader.js';
+  import { loadSchedule2025, loadCachedSchedule, getScheduleSource } from './js/scheduleLoader.js';
 
   // Version
   try {
@@ -546,9 +545,8 @@
   const info = document.getElementById('schedInfo');
   const tableEl = document.getElementById('schedTable');
   const exportBtn = document.getElementById('schedExport');
-  const refreshWebBtn = document.getElementById('schedRefreshWeb');
-  const useOfflineBtn = document.getElementById('schedUseOffline');
-  const saveOfflineBtn = document.getElementById('schedSaveOffline');
+      const exportFullBtn = document.getElementById('schedExportFull');
+      const reloadBtn = document.getElementById('schedReload');
   let SCHEDULE_ALL = loadCachedSchedule();
 
   function populateFilters(rows){
@@ -598,19 +596,14 @@
     a.click();
     URL.revokeObjectURL(a.href);
   });
-  refreshWebBtn.addEventListener('click', async () => {
-    SCHEDULE_ALL = await loadSchedule2025(true);
+      populateFilters(SCHEDULE_ALL);
+    applyFilters();
+  });
+      SCHEDULE_ALL = await loadSchedule2025(false);
     populateFilters(SCHEDULE_ALL);
     applyFilters();
   });
-  useOfflineBtn.addEventListener('click', async () => {
-    localStorage.removeItem('NFLSimulator:schedule:2025');
-    SCHEDULE_ALL = await loadSchedule2025(false);
-    populateFilters(SCHEDULE_ALL);
-    applyFilters();
-  });
-  saveOfflineBtn.addEventListener('click', () => downloadScheduleJSON(SCHEDULE_ALL, 2025));
-</script>
+  </script>
 
 <script>
 if ('serviceWorker' in navigator) {
