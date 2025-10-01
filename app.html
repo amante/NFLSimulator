@@ -17,29 +17,383 @@
 
   <main class="container">
     <nav class="site-tabs">
-      <button id="siteTabBtnUploads" class="site-tab-btn active">Cargas</button>
+      <button id="siteTabBtnUploads" class="site-tab-btn active">Stats Loader</button>
       <button id="siteTabBtnViewer" class="site-tab-btn">Ver estadísticas</button>
     </nav>
 
     <section id="siteTabUploads" class="site-tab-panel active">
-      <!-- Upload UI injected from legacy index -->
-      
-    <section class="card">
-      <h2>1) Cargar estadísticas de <span class="accent">Equipos</span></h2>
-      <div class="uploader" data-target="teams">
-        <input type="file" id="teamsFile" accept=".csv" />
-        <label for="teamsFile" class="btn">Seleccionar CSV</label>
-        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      <div class="card">
+        <h2>Stats Loader</h2>
+        <p class="subtitle">Organiza las cargas por secciones y subsecciones. Todo se guarda en <code>localStorage</code>.</p>
+        <nav class="loader-tabs">
+          <button class="loader-tab-btn active" data-sec="Offense">Offense</button><button class="loader-tab-btn " data-sec="Defense">Defense</button><button class="loader-tab-btn " data-sec="Special Teams">Special Teams</button>
+        </nav>
+        
+    <div id="loader-panel-offense" class="loader-panel active">
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sec="offense" data-sub="passing">Passing</button><button class="subtab-btn " data-sec="offense" data-sub="rushing">Rushing</button><button class="subtab-btn " data-sec="offense" data-sub="receiving">Receiving</button><button class="subtab-btn " data-sec="offense" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="offense" data-sub="downs">Downs</button>
       </div>
-      <div class="toolbar">
-        <input id="teamsSearch" class="input" placeholder="Buscar en equipos..." />
-        <button id="teamsDownloadJSON" class="btn secondary">Descargar JSON</button>
-        <a href="samples/team_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      <div id="offense-passing-panel" class="subpanel active">
+        <div class="card">
+          <h3>Offense · Passing</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="offense" data-sub="passing">
+            <input type="file" id="offense-passing-file" accept=".csv" />
+            <label for="offense-passing-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="offense-passing-search" class="input" placeholder="Buscar..." />
+            <button id="offense-passing-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/offense_passing_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="offense-passing-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Offense · Passing</b>.</div>
+          </div>
+        </div>
+        </div><div id="offense-rushing-panel" class="subpanel ">
+        <div class="card">
+          <h3>Offense · Rushing</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="offense" data-sub="rushing">
+            <input type="file" id="offense-rushing-file" accept=".csv" />
+            <label for="offense-rushing-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="offense-rushing-search" class="input" placeholder="Buscar..." />
+            <button id="offense-rushing-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/offense_rushing_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="offense-rushing-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Offense · Rushing</b>.</div>
+          </div>
+        </div>
+        </div><div id="offense-receiving-panel" class="subpanel ">
+        <div class="card">
+          <h3>Offense · Receiving</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="offense" data-sub="receiving">
+            <input type="file" id="offense-receiving-file" accept=".csv" />
+            <label for="offense-receiving-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="offense-receiving-search" class="input" placeholder="Buscar..." />
+            <button id="offense-receiving-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/offense_receiving_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="offense-receiving-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Offense · Receiving</b>.</div>
+          </div>
+        </div>
+        </div><div id="offense-scoring-panel" class="subpanel ">
+        <div class="card">
+          <h3>Offense · Scoring</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="offense" data-sub="scoring">
+            <input type="file" id="offense-scoring-file" accept=".csv" />
+            <label for="offense-scoring-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="offense-scoring-search" class="input" placeholder="Buscar..." />
+            <button id="offense-scoring-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/offense_scoring_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="offense-scoring-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Offense · Scoring</b>.</div>
+          </div>
+        </div>
+        </div><div id="offense-downs-panel" class="subpanel ">
+        <div class="card">
+          <h3>Offense · Downs</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="offense" data-sub="downs">
+            <input type="file" id="offense-downs-file" accept=".csv" />
+            <label for="offense-downs-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="offense-downs-search" class="input" placeholder="Buscar..." />
+            <button id="offense-downs-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/offense_downs_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="offense-downs-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Offense · Downs</b>.</div>
+          </div>
+        </div>
+        </div>
+    </div>
+    
+    <div id="loader-panel-defense" class="loader-panel ">
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sec="defense" data-sub="passing">Passing</button><button class="subtab-btn " data-sec="defense" data-sub="rushing">Rushing</button><button class="subtab-btn " data-sec="defense" data-sub="receiving">Receiving</button><button class="subtab-btn " data-sec="defense" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="defense" data-sub="tackles">Tackles</button><button class="subtab-btn " data-sec="defense" data-sub="downs">Downs</button><button class="subtab-btn " data-sec="defense" data-sub="fumbles">Fumbles</button><button class="subtab-btn " data-sec="defense" data-sub="interceptions">Interceptions</button>
       </div>
-      <div id="teamsTable" class="table-wrap empty">
-        <div class="empty-state">Aún no cargas datos de <b>equipos</b>.</div>
+      <div id="defense-passing-panel" class="subpanel active">
+        <div class="card">
+          <h3>Defense · Passing</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="passing">
+            <input type="file" id="defense-passing-file" accept=".csv" />
+            <label for="defense-passing-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-passing-search" class="input" placeholder="Buscar..." />
+            <button id="defense-passing-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_passing_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-passing-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Passing</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-rushing-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Rushing</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="rushing">
+            <input type="file" id="defense-rushing-file" accept=".csv" />
+            <label for="defense-rushing-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-rushing-search" class="input" placeholder="Buscar..." />
+            <button id="defense-rushing-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_rushing_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-rushing-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Rushing</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-receiving-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Receiving</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="receiving">
+            <input type="file" id="defense-receiving-file" accept=".csv" />
+            <label for="defense-receiving-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-receiving-search" class="input" placeholder="Buscar..." />
+            <button id="defense-receiving-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_receiving_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-receiving-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Receiving</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-scoring-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Scoring</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="scoring">
+            <input type="file" id="defense-scoring-file" accept=".csv" />
+            <label for="defense-scoring-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-scoring-search" class="input" placeholder="Buscar..." />
+            <button id="defense-scoring-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_scoring_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-scoring-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Scoring</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-tackles-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Tackles</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="tackles">
+            <input type="file" id="defense-tackles-file" accept=".csv" />
+            <label for="defense-tackles-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-tackles-search" class="input" placeholder="Buscar..." />
+            <button id="defense-tackles-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_tackles_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-tackles-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Tackles</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-downs-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Downs</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="downs">
+            <input type="file" id="defense-downs-file" accept=".csv" />
+            <label for="defense-downs-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-downs-search" class="input" placeholder="Buscar..." />
+            <button id="defense-downs-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_downs_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-downs-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Downs</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-fumbles-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Fumbles</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="fumbles">
+            <input type="file" id="defense-fumbles-file" accept=".csv" />
+            <label for="defense-fumbles-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-fumbles-search" class="input" placeholder="Buscar..." />
+            <button id="defense-fumbles-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_fumbles_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-fumbles-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Fumbles</b>.</div>
+          </div>
+        </div>
+        </div><div id="defense-interceptions-panel" class="subpanel ">
+        <div class="card">
+          <h3>Defense · Interceptions</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="defense" data-sub="interceptions">
+            <input type="file" id="defense-interceptions-file" accept=".csv" />
+            <label for="defense-interceptions-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="defense-interceptions-search" class="input" placeholder="Buscar..." />
+            <button id="defense-interceptions-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/defense_interceptions_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="defense-interceptions-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Defense · Interceptions</b>.</div>
+          </div>
+        </div>
+        </div>
+    </div>
+    
+    <div id="loader-panel-special-teams" class="loader-panel ">
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sec="special-teams" data-sub="field-goals">Field Goals</button><button class="subtab-btn " data-sec="special-teams" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="special-teams" data-sub="kickoffs">Kickoffs</button><button class="subtab-btn " data-sec="special-teams" data-sub="kickoff-returns">Kickoff Returns</button><button class="subtab-btn " data-sec="special-teams" data-sub="punting">Punting</button><button class="subtab-btn " data-sec="special-teams" data-sub="punt-returns">Punt Returns</button>
       </div>
-    </section>
+      <div id="special-teams-field-goals-panel" class="subpanel active">
+        <div class="card">
+          <h3>Special Teams · Field Goals</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="field-goals">
+            <input type="file" id="special-teams-field-goals-file" accept=".csv" />
+            <label for="special-teams-field-goals-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-field-goals-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-field-goals-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_field-goals_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-field-goals-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Field Goals</b>.</div>
+          </div>
+        </div>
+        </div><div id="special-teams-scoring-panel" class="subpanel ">
+        <div class="card">
+          <h3>Special Teams · Scoring</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="scoring">
+            <input type="file" id="special-teams-scoring-file" accept=".csv" />
+            <label for="special-teams-scoring-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-scoring-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-scoring-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_scoring_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-scoring-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Scoring</b>.</div>
+          </div>
+        </div>
+        </div><div id="special-teams-kickoffs-panel" class="subpanel ">
+        <div class="card">
+          <h3>Special Teams · Kickoffs</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="kickoffs">
+            <input type="file" id="special-teams-kickoffs-file" accept=".csv" />
+            <label for="special-teams-kickoffs-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-kickoffs-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-kickoffs-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_kickoffs_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-kickoffs-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Kickoffs</b>.</div>
+          </div>
+        </div>
+        </div><div id="special-teams-kickoff-returns-panel" class="subpanel ">
+        <div class="card">
+          <h3>Special Teams · Kickoff Returns</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="kickoff-returns">
+            <input type="file" id="special-teams-kickoff-returns-file" accept=".csv" />
+            <label for="special-teams-kickoff-returns-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-kickoff-returns-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-kickoff-returns-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_kickoff-returns_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-kickoff-returns-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Kickoff Returns</b>.</div>
+          </div>
+        </div>
+        </div><div id="special-teams-punting-panel" class="subpanel ">
+        <div class="card">
+          <h3>Special Teams · Punting</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="punting">
+            <input type="file" id="special-teams-punting-file" accept=".csv" />
+            <label for="special-teams-punting-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-punting-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-punting-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_punting_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-punting-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Punting</b>.</div>
+          </div>
+        </div>
+        </div><div id="special-teams-punt-returns-panel" class="subpanel ">
+        <div class="card">
+          <h3>Special Teams · Punt Returns</h3>
+          <div class="section-help">Sube el CSV para esta subsección. Puedes adaptar las columnas; la app detecta headers automáticamente.</div>
+          <div class="uploader" data-area="special-teams" data-sub="punt-returns">
+            <input type="file" id="special-teams-punt-returns-file" accept=".csv" />
+            <label for="special-teams-punt-returns-file" class="btn">Seleccionar CSV</label>
+            <p class="hint">o arrastra y suelta el archivo aquí</p>
+          </div>
+          <div class="toolbar">
+            <input id="special-teams-punt-returns-search" class="input" placeholder="Buscar..." />
+            <button id="special-teams-punt-returns-download" class="btn secondary">Descargar JSON</button>
+            <a href="samples/special-teams_punt-returns_template.csv" class="btn ghost template-link">Plantilla</a>
+          </div>
+          <div id="special-teams-punt-returns-table" class="table-wrap empty">
+            <div class="empty-state">Aún no cargas datos para <b>Special Teams · Punt Returns</b>.</div>
+          </div>
+        </div>
+        </div>
+    </div>
+    
+      </div>
+</section>
 
     <section class="card">
       <h2>2) Cargar estadísticas de <span class="accent">Jugadores</span></h2>

@@ -1,5 +1,6 @@
 import { renderTable, sortRows, filterRows } from './table.js';
 import { APP_VERSION, BUILD_TIME } from './version.js';
+import { renderBarChart } from './charts.js';
 import { loadTeams, loadPlayers, loadMeta, clearAll, loadGames } from './storage.js';
 
 
@@ -34,7 +35,7 @@ const state = {
     });
     if (tab === 'summary') ensureDateInit();
   }
-  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnTeams.addEventListener('click', () => { activate('teams'); try{ populateMetricSelect(); }catch{} });
   tabBtnPlayers.addEventListener('click', () => activate('players'));
   tabBtnSummary.addEventListener('click', () => activate('summary'));
 
@@ -43,6 +44,14 @@ const els = {
   teamsTable: document.getElementById('teamsTableV'),
   playersTable: document.getElementById('playersTableV'),
   teamsSearch: document.getElementById('teamsSearchV'),
+  metricSelect: document.getElementById('metricSelect'),
+  topN: document.getElementById('topN'),
+  exportTeamsCSV: document.getElementById('exportTeamsCSV'),
+  teamsChart: document.getElementById('teamsChart'),
+  kpiTeamsCount: document.getElementById('kpiTeamsCount'),
+  kpiMetricName: document.getElementById('kpiMetricName'),
+  kpiMetricAvg: document.getElementById('kpiMetricAvg'),
+  kpiMetricSum: document.getElementById('kpiMetricSum'),
   playersSearch: document.getElementById('playersSearchV'),
   refreshTeams: document.getElementById('refreshTeams'),
   refreshPlayers: document.getElementById('refreshPlayers'),
@@ -78,7 +87,7 @@ const els = {
     });
     if (tab === 'summary') ensureDateInit();
   }
-  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnTeams.addEventListener('click', () => { activate('teams'); try{ populateMetricSelect(); }catch{} });
   tabBtnPlayers.addEventListener('click', () => activate('players'));
   tabBtnSummary.addEventListener('click', () => activate('summary'));
 
@@ -93,6 +102,7 @@ function loadAll() {
   updateMeta();
   renderTeams();
   renderPlayers();
+  if (document.getElementById('tabTeams')?.classList.contains('active')) populateMetricSelect();
   // init summary if tab is active
   if (document.getElementById('tabSummary')?.classList.contains('active')) ensureDateInit();
 }
@@ -120,7 +130,7 @@ function updateMeta() {
     });
     if (tab === 'summary') ensureDateInit();
   }
-  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnTeams.addEventListener('click', () => { activate('teams'); try{ populateMetricSelect(); }catch{} });
   tabBtnPlayers.addEventListener('click', () => activate('players'));
   tabBtnSummary.addEventListener('click', () => activate('summary'));
 
@@ -132,6 +142,7 @@ function updateMeta() {
 
 function renderTeams() {
   renderTable(els.teamsTable, maybeSort('teams'), key => toggleSort('teams', key), row => openProfile('team', row['Team'] || row['TEAM'] || row['team']));
+  try { if (els.metricSelect) updateTeamsKpisAndChart(); } catch {}
 }
 function renderPlayers() {
   renderTable(els.playersTable, maybeSort('players'), key => toggleSort('players', key), row => openProfile('player', row['Player'] || row['PLAYER'] || row['player']));
@@ -333,3 +344,74 @@ function csvEscape(v){
   return s;
 }
 
+
+
+// ===== Teams Tab Enhancements =====
+function numericKeysFromRows(rows){
+  if (!rows?.length) return [];
+  const sample = rows[0];
+  return Object.keys(sample).filter(k => isFinite(normalizeNumber(sample[k])));
+}
+function normalizeNumber(v){
+  if (v === null || v === undefined) return NaN;
+  const s = String(v).replace(/,/g,'');
+  const n = Number(s);
+  return isFinite(n) ? n : NaN;
+}
+function populateMetricSelect(){
+  const keys = numericKeysFromRows(state.teams.raw);
+  const priority = ['PassYds','TD','INT','Rate','Sck','Att','Cmp','Yds/Att','1st','1st%','20+','40+','Lng','SckY'];
+  const ordered = [...new Set([...priority, ...keys])];
+  els.metricSelect.innerHTML = ordered.map(k => `<option value="${k}">${k}</option>`).join('');
+  if (ordered.length) els.metricSelect.value = ordered[0];
+  updateTeamsKpisAndChart();
+}
+function currentTeamsFiltered(){
+  // Use current search filter; sorting happens in table render
+  const q = els.teamsSearch.value || '';
+  const rows = state.teams.raw;
+  if (!q) return rows;
+  const l = q.toLowerCase();
+  return rows.filter(r => Object.values(r).some(v => (v ?? '').toString().toLowerCase().includes(l)));
+}
+function updateTeamsKpisAndChart(){
+  const metric = els.metricSelect.value;
+  const topN = Math.max(3, Math.min(32, Number(els.topN.value||10)));
+  const rows = currentTeamsFiltered();
+  els.kpiTeamsCount.textContent = String(rows.length);
+  els.kpiMetricName.textContent = metric || '—';
+  const nums = rows.map(r => normalizeNumber(r[metric])).filter(n => isFinite(n));
+  const avg = nums.length ? (nums.reduce((a,b)=>a+b,0)/nums.length) : 0;
+  const sum = nums.reduce((a,b)=>a+b,0);
+  els.kpiMetricAvg.textContent = (avg % 1 === 0 ? avg.toString() : avg.toFixed(2));
+  els.kpiMetricSum.textContent = (sum % 1 === 0 ? sum.toString() : sum.toFixed(2));
+  // Chart: top N by metric
+  const withTeam = rows.map(r => ({label: r['Team'] || r['team'] || r['TEAM'] || '?', value: normalizeNumber(r[metric])}))
+    .filter(d => isFinite(d.value));
+  withTeam.sort((a,b)=> b.value - a.value);
+  const series = withTeam.slice(0, topN);
+  if (els.teamsChart) renderBarChart(els.teamsChart, series, {height:260});
+}
+function exportTeamsFilteredCSV(){
+  const rows = currentTeamsFiltered();
+  if (!rows.length) { alert('No hay filas para exportar.'); return; }
+  const headers = Object.keys(rows[0]);
+  const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'teams_filtered.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function csvEscape(v){
+  const s = (v ?? '').toString();
+  if (/[",\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+  return s;
+}
+
+
+// Teams enhanced controls
+els.metricSelect.addEventListener('change', updateTeamsKpisAndChart);
+els.topN.addEventListener('change', updateTeamsKpisAndChart);
+els.exportTeamsCSV.addEventListener('click', exportTeamsFilteredCSV);

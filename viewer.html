@@ -25,11 +25,21 @@
     <section id="tabTeams" class="tab-panel active">
       <div class="card">
         <h2>Equipos</h2>
-        <div class="toolbar">
+        <div class="toolbar flex-wrap">
           <input id="teamsSearchV" class="input" placeholder="Buscar en equipos..." />
+          <select id="metricSelect" class="input metric-select"></select>
+          <input id="topN" class="input" type="number" min="3" max="32" step="1" value="10" style="max-width:110px" />
+          <button id="exportTeamsCSV" class="btn outline">Exportar CSV</button>
           <button id="refreshTeams" class="btn secondary">Actualizar</button>
           <button id="clearData" class="btn ghost">Borrar datos</button>
         </div>
+        <div class="kpis">
+          <div class="kpi"><b>Equipos (filtrados)</b><div class="val" id="kpiTeamsCount">0</div></div>
+          <div class="kpi"><b>Métrica</b><div class="val" id="kpiMetricName">—</div></div>
+          <div class="kpi"><b>Promedio</b><div class="val" id="kpiMetricAvg">—</div></div>
+          <div class="kpi"><b>Suma</b><div class="val" id="kpiMetricSum">—</div></div>
+        </div>
+        <div id="teamsChart" class="chart-teams"></div>
         <div id="teamsTableV" class="table-wrap empty">
           <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>equipos</b>.</div>
         </div>

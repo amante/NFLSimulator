@@ -66,3 +66,14 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Nueva página `app.html` con tabs superiores: **Cargas** y **Ver estadísticas** (viewer embebido).
 - `index.html` ahora redirige a `app.html` (se conserva `index_legacy.html`).
 - Badge de versión se mantiene visible.
+
+## v3.6: Equipos mejorado
+- Selector de **métrica** y **Top N** en el tab Equipos.
+- **KPIs** (conteo, promedio y suma de la métrica seleccionada).
+- **Gráfico de barras** Top N por métrica.
+- **Exportar CSV** del listado filtrado.
+
+## v3.7: Stats Loader con secciones y subsecciones
+- Nuevo **Stats Loader** con secciones: **Offense**, **Defense**, **Special Teams**.
+- Sub-secciones según lo solicitado (19 en total), cada una con su uploader, búsqueda, descarga JSON y plantilla CSV.
+- Los datos se guardan en `localStorage` por dataset (`NS:datasets:<area>:<sub>`).

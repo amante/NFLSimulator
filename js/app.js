@@ -1,6 +1,6 @@
 import { parseCSV, toJSON } from './csv.js';
 import { APP_VERSION, BUILD_TIME } from './version.js';
-import { saveData, loadTeams, loadPlayers } from './storage.js';
+import { saveData, loadTeams, loadPlayers, saveDataset, loadDataset } from './storage.js';
 import { renderTable, sortRows, filterRows } from './table.js';
 
 const state = {
@@ -209,3 +209,78 @@ async function handleGamesFile(file) {
   saveData({ games: rows });
   renderGames();
 }
+
+// ---- v3.7: Stats Loader wiring ----
+function setupStatsLoader(){
+  // Section tabs
+  const secBtns = Array.from(document.querySelectorAll('.loader-tab-btn'));
+  const secPanels = new Map(secBtns.map(btn => [btn.dataset.sec, document.getElementById('loader-panel-' + btn.dataset.sec)]));
+  secBtns.forEach(btn => btn.addEventListener('click', () => {
+    secBtns.forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.loader-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    secPanels.get(btn.dataset.sec)?.classList.add('active');
+  }));
+
+  // Subtabs per section
+  document.querySelectorAll('.subtabs').forEach(container => {
+    const subBtns = Array.from(container.querySelectorAll('.subtab-btn'));
+    subBtns.forEach(btn => btn.addEventListener('click', () => {
+      const sec = btn.dataset.sec;
+      const sub = btn.dataset.sub;
+      // toggle buttons
+      subBtns.forEach(b => b.classList.toggle('active', b === btn));
+      // toggle panels
+      const parent = container.parentElement;
+      parent.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
+      parent.querySelector(`#${sec}-${sub}-panel`)?.classList.add('active');
+    }));
+  });
+
+  // Uploaders auto-bind
+  document.querySelectorAll('.uploader[data-area][data-sub]').forEach(zone => {
+    const area = zone.dataset.area, sub = zone.dataset.sub;
+    const fileInput = zone.querySelector('input[type="file"]');
+    const search = document.getElementById(`${area}-${sub}-search`);
+    const downloadBtn = document.getElementById(`${area}-${sub}-download`);
+    const tableEl = document.getElementById(`${area}-${sub}-table`);
+
+    const render = (rows) => {
+      // Reuse existing table renderer
+      renderTable(tableEl, rows, () => {}, null);
+    };
+
+    const hydrate = () => {
+      try {
+        const rows = loadDataset(area, sub);
+        if (rows?.length) render(rows);
+      } catch {}
+    };
+
+    initUploader(zone, async (file) => {
+      const text = await file.text();
+      const { rows } = parseCSV(text);
+      saveDataset(area, sub, rows);
+      render(rows);
+    });
+
+    if (search) {
+      search.addEventListener('input', () => {
+        const all = loadDataset(area, sub);
+        const q = search.value.toLowerCase();
+        const filtered = !q ? all : all.filter(r => Object.values(r).some(v => (v ?? '').toString().toLowerCase().includes(q)));
+        render(filtered);
+      });
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        const rows = loadDataset(area, sub);
+        downloadJSON(rows, `${area}_${sub}.json`);
+      });
+    }
+
+    hydrate();
+  });
+}
+try { setupStatsLoader(); } catch {}

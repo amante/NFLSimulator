@@ -45,3 +45,24 @@ export function clearAll() {
 
 // For other modules
 export const STORAGE_KEYS = KEYS;
+
+// ---- v3.7 dataset helpers ----
+export function datasetKey(area, sub){
+  const a = String(area||'').trim(); const s = String(sub||'').trim();
+  return `${NS}:datasets:${a}:${s}`;
+}
+export function saveDataset(area, sub, rows){
+  try { localStorage.setItem(datasetKey(area, sub), JSON.stringify(rows||[])); } catch {}
+  const meta = loadMeta();
+  const now = new Date().toISOString();
+  const key = `${area}:${sub}`;
+  const datasets = meta.datasets || {};
+  datasets[key] = { updatedAt: now, rows: (rows||[]).length };
+  localStorage.setItem(KEYS.meta, JSON.stringify({ ...meta, datasets }));
+}
+export function loadDataset(area, sub){
+  try { return JSON.parse(localStorage.getItem(datasetKey(area, sub)) || '[]'); } catch { return []; }
+}
+export function listDatasets(){
+  try { const m = loadMeta(); return Object.entries(m.datasets||{}).map(([k,v]) => ({ key:k, ...v })); } catch { return []; }
+}

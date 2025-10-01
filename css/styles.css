@@ -95,3 +95,31 @@ h2{margin:0 0 12px 0;font-size:20px}
 .viewer-iframe { width:100%; min-height:80vh; border:1px solid var(--border); border-radius:12px; background:#0a0f15 }
 .notice{font-size:12px;color:var(--muted);margin-top:6px}
     
+
+/* v3.6: Teams tab enhancements */
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+.kpi{background:#0c1219;border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:110px}
+.kpi b{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+.kpi .val{font-weight:800;font-size:18px}
+.flex-wrap{display:flex;gap:8px;flex-wrap:wrap}
+.metric-select{min-width:200px}
+.small{font-size:12px;color:var(--muted)}
+.chart-teams{width:100%;height:280px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02);margin-top:8px}
+    
+
+/* v3.7: Stats Loader nested tabs */
+.loader-tabs { display:flex; gap:8px; border-bottom:1px solid var(--border); margin:8px 0 16px 0; flex-wrap:wrap; }
+.loader-tab-btn { background:transparent; border:none; color:var(--text); padding:8px 10px; cursor:pointer; font-weight:600; border-bottom:2px solid transparent; opacity:.85 }
+.loader-tab-btn.active { border-color: var(--brand); opacity:1 }
+.subtabs { display:flex; gap:6px; margin:0 0 12px 0; flex-wrap:wrap }
+.subtab-btn { background:#0c1219; border:1px solid var(--border); color:var(--text); padding:6px 10px; border-radius:999px; cursor:pointer; font-weight:600; opacity:.9 }
+.subtab-btn.active { outline:1px solid var(--brand) }
+.loader-panel { display:none }
+.loader-panel.active { display:block }
+.subpanel { display:none }
+.subpanel.active { display:block }
+
+.section-help{margin-top:-6px;color:var(--muted);font-size:12px}
+.template-link{margin-left:auto}
+.label{font-size:12px;color:var(--muted)}
+    
