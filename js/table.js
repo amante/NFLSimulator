@@ -26,7 +26,7 @@ export function filterRows(rows, query) {
   return rows.filter(r => Object.values(r).some(v => (v ?? "").toString().toLowerCase().includes(q)));
 }
 
-export function renderTable(el, rows, onSort) {
+export function renderTable(el, rows, onSort, onRowClick) {
   if (!rows || rows.length === 0) {
     el.innerHTML = '<div class="empty-state">No hay datos para mostrar.</div>';
     el.classList.add("empty");
@@ -35,8 +35,11 @@ export function renderTable(el, rows, onSort) {
   el.classList.remove("empty");
   const headers = Object.keys(rows[0]);
   const thead = `<thead><tr>${headers.map(h => `<th data-key="${h}">${h} <span class="sort">↕</span></th>`).join("")}</tr></thead>`;
-  const tbody = `<tbody>${rows.map(r => `<tr>${headers.map(h => `<td>${escapeHTML(r[h])}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  const tbody = `<tbody>${rows.map(r => `<tr class="clickable-row">${headers.map(h => `<td>${escapeHTML(r[h])}</td>`).join("")}</tr>`).join("")}</tbody>`;
   el.innerHTML = `<table class="table">${thead}${tbody}</table>`;
+  if (onRowClick) {
+    el.querySelectorAll('tbody tr').forEach((tr, idx) => tr.addEventListener('click', () => onRowClick(rows[idx])));
+  }
   el.querySelectorAll("th").forEach(th => {
     th.addEventListener("click", () => onSort(th.dataset.key));
   });

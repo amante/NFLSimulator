@@ -39,10 +39,10 @@ function updateMeta() {
 }
 
 function renderTeams() {
-  renderTable(els.teamsTable, maybeSort('teams'), key => toggleSort('teams', key));
+  renderTable(els.teamsTable, maybeSort('teams'), key => toggleSort('teams', key), row => openProfile('team', row['Team'] || row['TEAM'] || row['team']));
 }
 function renderPlayers() {
-  renderTable(els.playersTable, maybeSort('players'), key => toggleSort('players', key));
+  renderTable(els.playersTable, maybeSort('players'), key => toggleSort('players', key), row => openProfile('player', row['Player'] || row['PLAYER'] || row['player']));
 }
 function maybeSort(kind) {
   const s = state[kind];
@@ -90,3 +90,12 @@ window.addEventListener('storage', (e) => {
 
 // init
 loadAll();
+
+
+function openProfile(kind, id) {
+  if (!id) return;
+  const url = new URL('profile.html', window.location.href);
+  url.searchParams.set('type', kind);
+  url.searchParams.set('id', id);
+  window.open(url.toString(), '_blank');
+}

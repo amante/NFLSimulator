@@ -38,3 +38,8 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Desde `index.html` haz clic en **Ver estadísticas (nueva pestaña)** para abrir `viewer.html`.
 - La vista lee datos desde `localStorage` bajo el namespace `NFLSimulator`.
 - Escucha cambios en vivo (evento `storage`) si cargas nuevos CSV en otra pestaña.
+
+## v3: Perfiles y Gráficos (sin dependencias)
+- **viewer.html**: haz clic en cualquier fila para abrir un **perfil** en `profile.html` (nueva pestaña).
+- **charts.js**: gráficos de barras en **SVG** sin librerías externas.
+- **profile.html**: vista detallada con métricas clave y gráfico.

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil NFL</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Perfil detallado con gráficos para equipos y jugadores NFL.">
+</head>
+<body>
+  <header class="container">
+    <h1>🏈 Perfil <span id="kindBadge" class="badge">—</span></h1>
+    <p class="subtitle"><span id="titleName">Cargando…</span></p>
+    <div class="container inline-actions">
+      <button id="copyLink" class="copy-btn">Copiar enlace del perfil</button>
+      <a href="viewer.html" class="btn ghost">Volver al Viewer</a>
+    </div>
+  </header>
+
+  <main class="container profile-container">
+    <aside class="profile-card" id="metaCard">
+      <h3>Información</h3>
+      <div class="kv" id="metaKV"></div>
+    </aside>
+
+    <section class="profile-card">
+      <h3>Gráficos</h3>
+      <div class="chart-title">Principales métricas</div>
+      <div class="chart chart-wrap" id="chartMain"></div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="left"><span class="muted">Los datos provienen de localStorage (cargados en la app principal).</span></div>
+    <div class="right"><a href="index.html" class="btn outline">Cargar nuevos CSV</a></div>
+  </footer>
+
+  <script type="module" src="js/profile.js"></script>
+</body>
+</html>
