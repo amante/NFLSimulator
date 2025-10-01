@@ -29,7 +29,7 @@
         <nav class="loader-tabs">
           <button class="loader-tab-btn active" data-sec="Offense">Offense</button><button class="loader-tab-btn " data-sec="Defense">Defense</button><button class="loader-tab-btn " data-sec="Special Teams">Special Teams</button>
         </nav>
-        
+
     <div id="loader-panel-offense" class="loader-panel active">
       <div class="subtabs">
         <button class="subtab-btn active" data-sec="offense" data-sub="passing">Passing</button><button class="subtab-btn " data-sec="offense" data-sub="rushing">Rushing</button><button class="subtab-btn " data-sec="offense" data-sub="receiving">Receiving</button><button class="subtab-btn " data-sec="offense" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="offense" data-sub="downs">Downs</button>
@@ -126,7 +126,7 @@
         </div>
         </div>
     </div>
-    
+
     <div id="loader-panel-defense" class="loader-panel ">
       <div class="subtabs">
         <button class="subtab-btn active" data-sec="defense" data-sub="passing">Passing</button><button class="subtab-btn " data-sec="defense" data-sub="rushing">Rushing</button><button class="subtab-btn " data-sec="defense" data-sub="receiving">Receiving</button><button class="subtab-btn " data-sec="defense" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="defense" data-sub="tackles">Tackles</button><button class="subtab-btn " data-sec="defense" data-sub="downs">Downs</button><button class="subtab-btn " data-sec="defense" data-sub="fumbles">Fumbles</button><button class="subtab-btn " data-sec="defense" data-sub="interceptions">Interceptions</button>
@@ -277,7 +277,7 @@
         </div>
         </div>
     </div>
-    
+
     <div id="loader-panel-special-teams" class="loader-panel ">
       <div class="subtabs">
         <button class="subtab-btn active" data-sec="special-teams" data-sub="field-goals">Field Goals</button><button class="subtab-btn " data-sec="special-teams" data-sub="scoring">Scoring</button><button class="subtab-btn " data-sec="special-teams" data-sub="kickoffs">Kickoffs</button><button class="subtab-btn " data-sec="special-teams" data-sub="kickoff-returns">Kickoff Returns</button><button class="subtab-btn " data-sec="special-teams" data-sub="punting">Punting</button><button class="subtab-btn " data-sec="special-teams" data-sub="punt-returns">Punt Returns</button>
@@ -392,7 +392,7 @@
         </div>
         </div>
     </div>
-    
+
       </div>
 </section>
 
@@ -448,7 +448,7 @@
         </div>
       </details>
     </section>
-  
+
       <div class="notice">Tip: los datos se guardan en <code>localStorage</code>. Al cambiar al tab <b>Ver estadísticas</b>, se mostrarán de inmediato.</div>
     </section>
 
@@ -459,7 +459,7 @@
         <iframe id="viewerFrame" class="viewer-iframe" src="viewer.html" title="NFL Stats Viewer"></iframe>
       </div>
     </section>
-  
+
     <section id="siteTabSchedule" class="site-tab-panel">
       <div class="card">
         <h2>Schedule 2025</h2>
@@ -488,8 +488,8 @@
     <div class="right"><a href="viewer.html" class="btn ghost">Abrir viewer en pestaña separada</a></div>
   </footer>
 
-  
-    
+
+
 <script type="module">
   import { APP_VERSION, BUILD_TIME } from './js/version.js';
   import { renderTable } from './js/table.js';
@@ -585,7 +585,8 @@
     const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
     const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
       const s = String(r[h] ?? '');
-      return /[",]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+      return /[",
+]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
     }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
@@ -596,9 +597,11 @@
   });
       populateFilters(SCHEDULE_ALL);
     applyFilters();
+  });
       SCHEDULE_ALL = await loadSchedule2025(false);
     populateFilters(SCHEDULE_ALL);
     applyFilters();
+  });
   </script>
 
 <script>

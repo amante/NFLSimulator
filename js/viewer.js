@@ -21,26 +21,27 @@ const state = {
 };
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
-
-  function activate(tab){
+  // === Viewer tabs wiring (guarded, single initialization) ===
+if (!window.__viewerTabsInit) {
+  window.__viewerTabsInit = true;
+  function activateTab(which) {
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
     const panels = [tabTeams, tabPlayers, tabSummary];
     ['teams','players','summary'].forEach((name, idx) => {
-      if (tab === name){ btns[idx].classList.add('active'); panels[idx].classList.add('active'); }
-      else { btns[idx].classList.remove('active'); panels[idx].classList.remove('active'); }
+      if (which === name) { btns[idx]?.classList.add('active'); panels[idx]?.classList.add('active'); }
+      else { btns[idx]?.classList.remove('active'); panels[idx]?.classList.remove('active'); }
     });
-    if (tab === 'summary') ensureDateInit();
+    try { if (which === 'teams' && typeof populateMetricSelect === 'function') populateMetricSelect(); } catch {}
+    try { if (which === 'summary' && typeof ensureDateInit === 'function') ensureDateInit(); } catch {}
   }
-  tabBtnTeams.addEventListener('click', () => { activate('teams'); try{ populateMetricSelect(); }catch{} });
-  tabBtnPlayers.addEventListener('click', () => activate('players'));
-  tabBtnSummary.addEventListener('click', () => activate('summary'));
 
+  tabBtnTeams?.addEventListener('click', () => activateTab('teams'));
+  tabBtnPlayers?.addEventListener('click', () => activateTab('players'));
+  tabBtnSummary?.addEventListener('click', () => activateTab('summary'));
+
+  // Default
+  activateTab('teams');
+}
 
 const els = {
   teamsTable: document.getElementById('teamsTableV'),
@@ -73,13 +74,6 @@ const els = {
 };
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
-
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
     const panels = [tabTeams, tabPlayers, tabSummary];
@@ -122,13 +116,6 @@ function updateMeta() {
     const counts = meta.counts || {teams: state.teams.raw.length, players: state.players.raw.length};
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
-
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
     const panels = [tabTeams, tabPlayers, tabSummary];

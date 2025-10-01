@@ -107,3 +107,8 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Eliminada la búsqueda online del calendario; ahora **solo** se carga `data/schedule_2025.json`.
 - El tab **Schedule** muestra botón **Releer JSON** y **Exportar CSV**.
 - El **Resumen** del viewer usa el cache si existe; si no, intenta leer el JSON y, en última instancia, cae al sample embebido.
+
+## v3.11: Limpieza de código
+- Tabs del viewer consolidados con guard y sin duplicados.
+- Exportación CSV endurecida (sin RegExp frágil; joins normalizados).
+- Remoción de bloques duplicados y espacios finales.
