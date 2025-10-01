@@ -43,3 +43,6 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - **viewer.html**: haz clic en cualquier fila para abrir un **perfil** en `profile.html` (nueva pestaña).
 - **charts.js**: gráficos de barras en **SVG** sin librerías externas.
 - **profile.html**: vista detallada con métricas clave y gráfico.
+
+## v3.1: Tabs superiores en Viewer
+- La vista de estadísticas ahora tiene **tabs superiores**: _Equipos_ y _Jugadores_.

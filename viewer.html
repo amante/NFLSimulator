@@ -14,28 +14,37 @@
     <p class="subtitle">Mostrando los datos guardados desde la página de carga. <span id="metaInfo" class="muted"></span></p>
   </header>
 
-  <main class="container grid">
-    <section class="card">
-      <h2>Equipos</h2>
-      <div class="toolbar">
-        <input id="teamsSearchV" class="input" placeholder="Buscar en equipos..." />
-        <button id="refreshTeams" class="btn secondary">Actualizar</button>
-        <button id="clearData" class="btn ghost">Borrar datos</button>
-      </div>
-      <div id="teamsTableV" class="table-wrap empty">
-        <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>equipos</b>.</div>
+    <main class="container">
+    <nav class="tabs">
+      <button id="tabBtnTeams" class="tab-btn active">Equipos</button>
+      <button id="tabBtnPlayers" class="tab-btn">Jugadores</button>
+    </nav>
+
+    <section id="tabTeams" class="tab-panel active">
+      <div class="card">
+        <h2>Equipos</h2>
+        <div class="toolbar">
+          <input id="teamsSearchV" class="input" placeholder="Buscar en equipos..." />
+          <button id="refreshTeams" class="btn secondary">Actualizar</button>
+          <button id="clearData" class="btn ghost">Borrar datos</button>
+        </div>
+        <div id="teamsTableV" class="table-wrap empty">
+          <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>equipos</b>.</div>
+        </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Jugadores</h2>
-      <div class="toolbar">
-        <input id="playersSearchV" class="input" placeholder="Buscar en jugadores..." />
-        <button id="refreshPlayers" class="btn secondary">Actualizar</button>
-        <a href="index.html" class="btn ghost">Ir a carga</a>
-      </div>
-      <div id="playersTableV" class="table-wrap empty">
-        <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>jugadores</b>.</div>
+    <section id="tabPlayers" class="tab-panel">
+      <div class="card">
+        <h2>Jugadores</h2>
+        <div class="toolbar">
+          <input id="playersSearchV" class="input" placeholder="Buscar en jugadores..." />
+          <button id="refreshPlayers" class="btn secondary">Actualizar</button>
+          <a href="index.html" class="btn ghost">Ir a carga</a>
+        </div>
+        <div id="playersTableV" class="table-wrap empty">
+          <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>jugadores</b>.</div>
+        </div>
       </div>
     </section>
   </main>

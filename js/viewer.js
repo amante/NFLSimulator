@@ -6,6 +6,25 @@ const state = {
   players: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
 };
 
+  // Tabs
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+
+  function activate(tab){
+    if (tab === 'teams'){
+      tabBtnTeams.classList.add('active'); tabTeams.classList.add('active');
+      tabBtnPlayers.classList.remove('active'); tabPlayers.classList.remove('active');
+    } else {
+      tabBtnPlayers.classList.add('active'); tabPlayers.classList.add('active');
+      tabBtnTeams.classList.remove('active'); tabTeams.classList.remove('active');
+    }
+  }
+  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnPlayers.addEventListener('click', () => activate('players'));
+
+
 const els = {
   teamsTable: document.getElementById('teamsTableV'),
   playersTable: document.getElementById('playersTableV'),
@@ -16,6 +35,25 @@ const els = {
   clearData: document.getElementById('clearData'),
   metaInfo: document.getElementById('metaInfo'),
 };
+
+  // Tabs
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+
+  function activate(tab){
+    if (tab === 'teams'){
+      tabBtnTeams.classList.add('active'); tabTeams.classList.add('active');
+      tabBtnPlayers.classList.remove('active'); tabPlayers.classList.remove('active');
+    } else {
+      tabBtnPlayers.classList.add('active'); tabPlayers.classList.add('active');
+      tabBtnTeams.classList.remove('active'); tabTeams.classList.remove('active');
+    }
+  }
+  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnPlayers.addEventListener('click', () => activate('players'));
+
 
 function loadAll() {
   state.teams.raw = loadTeams();
@@ -32,6 +70,25 @@ function updateMeta() {
   if (meta?.updatedAt) {
     const t = new Date(meta.updatedAt);
     const counts = meta.counts || {teams: state.teams.raw.length, players: state.players.raw.length};
+
+  // Tabs
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+
+  function activate(tab){
+    if (tab === 'teams'){
+      tabBtnTeams.classList.add('active'); tabTeams.classList.add('active');
+      tabBtnPlayers.classList.remove('active'); tabPlayers.classList.remove('active');
+    } else {
+      tabBtnPlayers.classList.add('active'); tabPlayers.classList.add('active');
+      tabBtnTeams.classList.remove('active'); tabTeams.classList.remove('active');
+    }
+  }
+  tabBtnTeams.addEventListener('click', () => activate('teams'));
+  tabBtnPlayers.addEventListener('click', () => activate('players'));
+
     els.metaInfo.textContent = `Última actualización: ${t.toLocaleString()} • Equipos: ${counts.teams} • Jugadores: ${counts.players}`;
   } else {
     els.metaInfo.textContent = '';
