@@ -89,3 +89,8 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - El tab **Schedule** ahora carga automáticamente **todas las semanas (1–18)** del **2025** desde endpoints públicos de ESPN en tiempo de ejecución y las cachea en `localStorage`.
 - El **Resumen** del viewer usa el schedule cacheado si está disponible; si no, recurre al embedded sample.
 - Se puede exportar el CSV filtrado por semana/equipo.
+
+## v3.10: Offline schedule + fix de tabs
+- Navegación de tabs más robusta (handlers genéricos + `type="button"`).
+- Soporte offline-first para schedule: primero `data/schedule_2025.json`, luego cache, luego red.
+- Botones en Schedule: Refrescar de Internet, Usar offline, Guardar JSON offline.

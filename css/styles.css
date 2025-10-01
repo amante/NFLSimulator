@@ -123,3 +123,7 @@ h2{margin:0 0 12px 0;font-size:20px}
 .template-link{margin-left:auto}
 .label{font-size:12px;color:var(--muted)}
     
+
+/* v3.10: ensure tabs are clearly clickable */
+.site-tab-btn, .loader-tab-btn, .subtab-btn { pointer-events:auto; user-select:none }
+    
