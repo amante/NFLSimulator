@@ -472,8 +472,9 @@
 <button id="schedRefreshWeb" class="btn secondary" type="button">Refrescar de Internet</button>
 <button id="schedUseOffline" class="btn ghost" type="button">Usar offline</button>
 <button id="schedSaveOffline" class="btn ghost" type="button">Guardar JSON offline</button>
+<button id="schedPrepack" class="btn" type="button">Preempaquetar (offline ahora)</button>
         </div>
-        <div id="schedInfo" class="subtitle"></div>
+        <div class="subtitle"><span id="schedInfo"></span> <span id="schedSource" class="badge" style="margin-left:8px">—</span></div>
         <div id="offlineNotice" class="notice" style="display:none">Estás sin conexión. Se usará el JSON offline o el cache local.</div>
         <div id="schedTable" class="table-wrap empty">
           <div class="empty-state">Cargando schedule…</div>
@@ -493,7 +494,7 @@
 <script type="module">
   import { APP_VERSION, BUILD_TIME } from './js/version.js';
   import { renderTable } from './js/table.js';
-  import { loadSchedule2025, loadCachedSchedule, downloadScheduleJSON } from './js/scheduleLoader.js';
+  import { loadSchedule2025, loadCachedSchedule, downloadScheduleJSON, getScheduleSource } from './js/scheduleLoader.js';
 
   // Version
   try {
@@ -610,6 +611,17 @@
   });
   saveOfflineBtn.addEventListener('click', () => downloadScheduleJSON(SCHEDULE_ALL, 2025));
 </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const base = location.pathname.replace(/\/[^/]*$/, '');
+    const swPath = base + '/sw.js';
+    navigator.serviceWorker.register(swPath).catch(console.warn);
+  });
+}
+</script>
 </body>
+
 
 </html>

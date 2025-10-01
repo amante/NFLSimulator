@@ -94,3 +94,11 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Navegación de tabs más robusta (handlers genéricos + `type="button"`).
 - Soporte offline-first para schedule: primero `data/schedule_2025.json`, luego cache, luego red.
 - Botones en Schedule: Refrescar de Internet, Usar offline, Guardar JSON offline.
+
+## v3.10.3: Index con redirect sólo-online
+- `index.html` ya no usa meta refresh; ahora verifica `navigator.onLine` y sólo redirige si hay conexión.
+- Si no hay conexión, muestra estado y botón manual para reintentar.
+
+## v3.10.5: Preempaquetar Offline + Service Worker
+- Botón **Preempaquetar (offline ahora)** en *Schedule* que baja las 18 semanas y descarga `data/schedule_2025.json` listo para subir al repo.
+- Service Worker (`sw.js`) sirve `data/schedule_2025.json` desde caché cuando estás offline.

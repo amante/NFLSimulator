@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=app.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NFL Simulator — Inicio</title>
   <link rel="icon" href="assets/favicon.svg" />
@@ -12,16 +11,66 @@
   <header class="container">
     <h1>🏈 NFL Simulator <span class="badge version version-badge">—</span></h1>
     <div class="header-meta"><span id="buildMeta">Compilando…</span></div>
-    <p class="subtitle">Redirigiendo a <b>app.html</b>… Si no ocurre, <a href="app.html">haz clic aquí</a>.</p>
+    <p class="subtitle">
+      <span id="status">Comprobando conexión…</span>
+      <a id="linkApp" href="app.html" class="btn" style="display:none;margin-left:10px">Abrir app</a>
+    </p>
   </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>Bienvenido</h2>
+      <p>Este inicio redirige a <b>app.html</b> sólo si hay conexión. Si estás offline, podrás reintentar más tarde desde el botón.</p>
+      <ul>
+        <li><a href="app.html">Ir a la app</a> (si hay conexión)</li>
+        <li><a href="index_legacy.html">Versión legacy de carga</a> (opcional)</li>
+        <li><a href="viewer.html">Abrir viewer directo</a></li>
+      </ul>
+    </div>
+  </main>
+
   <script type="module">
     import { APP_VERSION, BUILD_TIME } from './js/version.js';
+    // Badge y título
     try {
       document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
       const meta = document.getElementById('buildMeta');
       if (meta) meta.textContent = 'Versión ' + APP_VERSION + ' • build ' + BUILD_TIME;
       document.title = document.title + ' — ' + APP_VERSION;
-    } catch {};
+    } catch {}
+
+    const status = document.getElementById('status');
+    const btn = document.getElementById('linkApp');
+
+    function goIfOnline() {
+      if (navigator.onLine) {
+        status.textContent = 'Red OK → entrando a la app…';
+        location.replace('app.html');
+      } else {
+        status.textContent = 'Sin conexión. Puedes abrir la app cuando vuelva la red.';
+        btn.style.display = 'inline-block';
+      }
+    }
+
+    window.addEventListener('online', goIfOnline);
+    window.addEventListener('offline', () => {
+      status.textContent = 'Sin conexión. Esperando reconexión…';
+      btn.style.display = 'inline-block';
+    });
+
+    // Primer chequeo
+    goIfOnline();
   </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const base = location.pathname.replace(/\/[^/]*$/, '');
+    const swPath = base + '/sw.js';
+    navigator.serviceWorker.register(swPath).catch(console.warn);
+  });
+}
+</script>
 </body>
+
 </html>

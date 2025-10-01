@@ -4,6 +4,9 @@ import { SCHEDULE_2025 } from './schedule.js';
 const NS = 'NFLSimulator';
 const SCHED_KEY = `${NS}:schedule:2025`;
 
+let LAST_SOURCE = 'unknown';
+export function getScheduleSource(){ return LAST_SOURCE; }
+
 function isOnline(){ try { return typeof navigator !== 'undefined' ? navigator.onLine : false; } catch { return false; } }
 
 export function loadCachedSchedule(){
@@ -86,12 +89,13 @@ async function fetchWeekFromCdn(week){
 export async function loadSchedule2025(fullReload=false){
   const local = await tryLoadLocalJson();
   if (local?.length >= 250 && !fullReload) {
+    LAST_SOURCE = 'offline-json';
     saveCachedSchedule(local);
     return local;
   }
   if (!fullReload){
     const cached = loadCachedSchedule();
-    if (cached?.length >= 250) return cached;
+    if (cached?.length >= 250) { LAST_SOURCE = 'cache'; return cached; }
   }
   let all = [];
   if (isOnline()) {
@@ -102,7 +106,7 @@ export async function loadSchedule2025(fullReload=false){
       all.push(...rows.map(normRow));
     }
   }
-  const out = all.length ? all : SCHEDULE_2025.map(normRow);
+  const out = all.length ? (LAST_SOURCE='web', all) : (LAST_SOURCE='embedded', SCHEDULE_2025.map(normRow));
   saveCachedSchedule(out);
   return out;
 }
