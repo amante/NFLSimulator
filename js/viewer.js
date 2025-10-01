@@ -1,7 +1,9 @@
 import { renderTable, sortRows, filterRows } from './table.js';
 import { APP_VERSION, BUILD_TIME } from './version.js';
 import { renderBarChart } from './charts.js';
-import { loadTeams, loadPlayers, loadMeta, clearAll, loadGames } from './storage.js';
+import { loadTeams, loadPlayers, loadMeta, clearAll } from './storage.js';
+import { SCHEDULE_2025 } from './schedule.js';
+import { loadCachedSchedule } from './scheduleLoader.js';
 
 
 // Show version/build
@@ -95,7 +97,8 @@ const els = {
 function loadAll() {
   state.teams.raw = loadTeams();
   state.players.raw = loadPlayers();
-  state.games.raw = loadGames();
+  const cached = loadCachedSchedule();
+  state.games.raw = (Array.isArray(cached) && cached.length) ? cached : (Array.isArray(SCHEDULE_2025) ? SCHEDULE_2025 : []);
   state.teams.view = state.teams.raw;
   state.players.view = state.players.raw;
   state.games.view = state.games.raw;
@@ -247,7 +250,8 @@ els.datePicker.addEventListener('change', () => {
 els.prevDay.addEventListener('click', () => adjustDate(-1));
 els.nextDay.addEventListener('click', () => adjustDate(1));
 els.refreshGames.addEventListener('click', () => {
-  state.games.raw = loadGames();
+  const cached = loadCachedSchedule();
+  state.games.raw = (Array.isArray(cached) && cached.length) ? cached : (Array.isArray(SCHEDULE_2025) ? SCHEDULE_2025 : []);
   renderSummaryForDate(els.datePicker.value || uniqueGameDates()[0] || '');
 });
 

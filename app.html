@@ -18,7 +18,8 @@
   <main class="container">
     <nav class="site-tabs">
       <button id="siteTabBtnUploads" class="site-tab-btn active">Stats Loader</button>
-      <button id="siteTabBtnViewer" class="site-tab-btn">Ver estadísticas</button>
+      <button id="siteTabBtnViewer" class="site-tab-btn">Stats</button>
+      <button id="siteTabBtnSchedule" class="site-tab-btn">Schedule</button>
     </nav>
 
     <section id="siteTabUploads" class="site-tab-panel active">
@@ -458,6 +459,24 @@
         <iframe id="viewerFrame" class="viewer-iframe" src="viewer.html" title="NFL Stats Viewer"></iframe>
       </div>
     </section>
+  
+    <section id="siteTabSchedule" class="site-tab-panel">
+      <div class="card">
+        <h2>Schedule 2025</h2>
+        <div class="toolbar flex-wrap">
+          <label class="label">Week</label>
+          <select id="schedWeek" class="input" style="max-width:120px"></select>
+          <label class="label">Team</label>
+          <select id="schedTeam" class="input" style="max-width:160px"></select>
+          <button id="schedExport" class="btn outline">Exportar CSV</button>
+        </div>
+        <div id="schedInfo" class="subtitle"></div>
+        <div id="schedTable" class="table-wrap empty">
+          <div class="empty-state">Cargando schedule…</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="container footer">
@@ -465,45 +484,128 @@
     <div class="right"><a href="viewer.html" class="btn ghost">Abrir viewer en pestaña separada</a></div>
   </footer>
 
-  <script type="module">
-    import { APP_VERSION, BUILD_TIME } from './js/version.js';
-    // Show version/build (avoid template literals to sidestep curly issues)
-    try {
-      document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
-      const meta = document.getElementById('buildMeta');
-      if (meta) meta.textContent = 'Versión ' + APP_VERSION + ' • build ' + BUILD_TIME;
-      document.title = document.title + ' — ' + APP_VERSION;
-    } catch {};
+  
+    <script type="module">
+      import { APP_VERSION, BUILD_TIME } from './js/version.js';
+      import { renderTable } from './js/table.js';
+      import { loadSchedule2025, loadCachedSchedule } from './js/scheduleLoader.js';
 
-    // Site-level tabs
-    const btnU = document.getElementById('siteTabBtnUploads');
-    const btnV = document.getElementById('siteTabBtnViewer');
-    const tabU = document.getElementById('siteTabUploads');
-    const tabV = document.getElementById('siteTabViewer');
-    function activate(which) {
-      if (which === 'uploads') {
-        btnU.classList.add('active'); tabU.classList.add('active');
-        btnV.classList.remove('active'); tabV.classList.remove('active');
-      } else {
-        btnV.classList.add('active'); tabV.classList.add('active');
-        btnU.classList.remove('active'); tabU.classList.remove('active');
+      // Version header
+      try {
+        document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
+        const meta = document.getElementById('buildMeta');
+        if (meta) meta.textContent = 'Versión ' + APP_VERSION + ' • build ' + BUILD_TIME;
+        document.title = document.title + ' — ' + APP_VERSION;
+      } catch {}
+
+      // Site-level tabs
+      const btnU = document.getElementById('siteTabBtnUploads');
+      const btnV = document.getElementById('siteTabBtnViewer');
+      const btnS = document.getElementById('siteTabBtnSchedule');
+      const tabU = document.getElementById('siteTabUploads');
+      const tabV = document.getElementById('siteTabViewer');
+      const tabS = document.getElementById('siteTabSchedule');
+      function activate(which){
+        if (which === 'uploads') {
+          btnU.classList.add('active'); tabU.classList.add('active');
+          btnV.classList.remove('active'); tabV.classList.remove('active');
+          btnS.classList.remove('active'); tabS.classList.remove('active');
+        } else if (which === 'viewer') {
+          btnV.classList.add('active'); tabV.classList.add('active');
+          btnU.classList.remove('active'); tabU.classList.remove('active');
+          btnS.classList.remove('active'); tabS.classList.remove('active');
+        } else if (which === 'schedule') {
+          btnS.classList.add('active'); tabS.classList.add('active');
+          btnU.classList.remove('active'); tabU.classList.remove('active');
+          btnV.classList.remove('active'); tabV.classList.remove('active');
+          // lazy-init schedule
+          if (!window.__schedInit) { window.__schedInit = true; initScheduleTab(); }
+        }
       }
-    }
-    btnU.addEventListener('click', () => activate('uploads'));
-    btnV.addEventListener('click', () => activate('viewer'));
+      btnU.addEventListener('click', () => activate('uploads'));
+      btnV.addEventListener('click', () => activate('viewer'));
+      btnS.addEventListener('click', () => activate('schedule'));
 
-    // Auto-resize iframe to viewport
-    const iframe = document.getElementById('viewerFrame');
-    function resizeIframe() {
-      const rect = iframe.getBoundingClientRect();
-      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      iframe.style.minHeight = Math.max( vh - rect.top - 24, 500 ) + 'px';
-    }
-    window.addEventListener('resize', resizeIframe);
-    window.addEventListener('load', resizeIframe);
-  </script>
+      // Auto-resize iframe
+      const iframe = document.getElementById('viewerFrame');
+      function resizeIframe(){
+        const rect = iframe.getBoundingClientRect();
+        const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        iframe.style.minHeight = Math.max(vh - rect.top - 24, 500) + 'px';
+      }
+      window.addEventListener('resize', resizeIframe);
+      window.addEventListener('load', resizeIframe);
 
-  <!-- Load app modules so the upload UI works inside this page -->
-  <script type="module" src="js/app.js"></script>
+      // ----- Schedule TAB -----
+      const weekSel = document.getElementById('schedWeek');
+      const teamSel = document.getElementById('schedTeam');
+      const info = document.getElementById('schedInfo');
+      const tableEl = document.getElementById('schedTable');
+      const exportBtn = document.getElementById('schedExport');
+      let SCHEDULE_ALL = loadCachedSchedule();
+
+      function populateFilters(rows){
+        const weeks = Array.from(new Set(rows.map(r => r.Week))).sort((a,b)=>a-b);
+        weekSel.innerHTML = weeks.map(w => `<option value="${w}">Semana ${w}</option>`).join('');
+        const teams = Array.from(new Set(rows.flatMap(r => [r.AwayTeam, r.HomeTeam]).filter(Boolean))).sort();
+        teamSel.innerHTML = '<option value="all">Todos</option>' + teams.map(t => `<option value="${t}">${t}</option>`).join('');
+        if (weeks.length) weekSel.value = weeks[0];
+      }
+
+      function applyFilters(){
+        const w = Number(weekSel.value);
+        const t = teamSel.value;
+        let rows = SCHEDULE_ALL.filter(g => g.Week === w);
+        if (t && t !== 'all') rows = rows.filter(g => g.AwayTeam === t || g.HomeTeam === t);
+        info.textContent = `${rows.length} partido(s) — Semana ${w}` + (t && t!=='all' ? ` — Equipo ${t}` : '');
+        const displayRows = rows.map(r => ({
+          Date: r.Date,
+          TimeET: r.TimeET || '—',
+          Away: r.AwayTeam,
+          Home: r.HomeTeam,
+          Network: r.Network || '—',
+          Notes: r.Notes || ''
+        }));
+        renderTable(tableEl, displayRows, () => {}, null);
+      }
+
+      async function initScheduleTab(){
+        try {
+          // Try to load fresh schedule (weeks 1–18)
+          SCHEDULE_ALL = await loadSchedule2025();
+        } catch(e) {
+          console.warn('Falling back to cached schedule due to error', e);
+          SCHEDULE_ALL = loadCachedSchedule();
+        }
+        populateFilters(SCHEDULE_ALL);
+        applyFilters();
+      }
+
+      exportBtn.addEventListener('click', () => {
+        const w = Number(weekSel.value);
+        const t = teamSel.value;
+        let rows = SCHEDULE_ALL.filter(g => g.Week === w);
+        if (t && t !== 'all') rows = rows.filter(g => g.AwayTeam === t || g.HomeTeam === t);
+        const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
+        const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
+          const v = r[h] ?? '';
+          const s = v.toString();
+          return /[",
+]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+        }).join(','))).join('
+');
+        const blob = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `schedule_2025_week${w}${t && t!=='all' ? '_'+t : ''}.csv`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+
+      // If user lands directly on Schedule tab, init now
+      if (document.getElementById('siteTabSchedule')?.classList.contains('active')) initScheduleTab();
+    </script>
+
+
 </body>
 </html>

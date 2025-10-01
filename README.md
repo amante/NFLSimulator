@@ -77,3 +77,15 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Nuevo **Stats Loader** con secciones: **Offense**, **Defense**, **Special Teams**.
 - Sub-secciones según lo solicitado (19 en total), cada una con su uploader, búsqueda, descarga JSON y plantilla CSV.
 - Los datos se guardan en `localStorage` por dataset (`NS:datasets:<area>:<sub>`).
+
+## v3.8: Schedule integrado
+- Renombrado tab de sitio **Ver estadísticas** → **Stats** y agregado tab **Schedule**.
+- El tab **Schedule** muestra el calendario 2025 por **Semana** y **Equipo** (dataset embebido en `js/schedule.js`).
+- El tab **Resumen** del viewer ahora usa el **Schedule** embebido en lugar de la carga de partidos.
+- Se elimina la necesidad de cargar **Partidos** en Stats Loader.
+- Puedes reemplazar el dataset con un JSON completo en `data/schedule_2025.json` y/o ajustar `js/schedule.js`.
+
+## v3.9: Schedule completo (runtime)
+- El tab **Schedule** ahora carga automáticamente **todas las semanas (1–18)** del **2025** desde endpoints públicos de ESPN en tiempo de ejecución y las cachea en `localStorage`.
+- El **Resumen** del viewer usa el schedule cacheado si está disponible; si no, recurre al embedded sample.
+- Se puede exportar el CSV filtrado por semana/equipo.
