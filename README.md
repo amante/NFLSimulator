@@ -1,33 +1,35 @@
-# NFL Win Probabilities — v2
+# NFL Stats Uploader v1
 
-Mejoras sobre v1:
-- **Normalización** selectable: Z-score, percentil o sin normalizar.
-- **Pesos por métrica ampliados** (EPA/DVOA/SOS, etc.).
-- **Factores contextuales** en el simulador: localía, clima (°C), descanso y lesiones.
-- **Exportar/Importar** estado completo (equipos/pesos/meta).
+Pequeña web estática para cargar y visualizar estadísticas de **equipos** y **jugadores** de la NFL desde archivos CSV.
 
-## Uso
-1. Abrir `index.html` (no requiere servidor).
-2. Cargar un CSV o usar **Cargar ejemplo**.
-3. Ajustar normalización, pesos y factores.
-4. Elegir equipos y **Calcular**.
+## Cómo usar
+1. Abre `index.html` en tu navegador.
+2. Carga tu CSV de equipos y/o de jugadores (puedes usar las **plantillas** en la carpeta `samples/`).
+3. Filtra con el buscador y haz clic en los encabezados para **ordenar**.
+4. Puedes **descargar JSON** de lo que estés viendo o exportar un **snapshot HTML**.
 
-## CSV soportado
-Cualquier columna adicional se conserva. Recomendado:
+## Formato esperado de CSV
+- `samples/team_stats_template.csv`
 ```
-team,off_rating,def_rating,special_rating,epa_off,epa_def,dvoa_off,dvoa_def,sos,rest_days,injuries,temp_c,home
-Kansas City Chiefs,92,85,78,0.22,-0.12,18.5,-12.3,1.2,6,1.0,18,1
-...
+Team,Att,Cmp,Cmp%,Yds/Att,PassYds,TD,INT,Rate,1st,1st%,20+,40+,Lng,Sck,SckY
+```
+- `samples/player_stats_template.csv`
+```
+Player,Team,Pos,GP,PassAtt,PassYds,PassTD,INT,RushAtt,RushYds,RushTD,Rec,RecYds,RecTD,Tackles,Sacks,DefINT,FantasyPts
 ```
 
-## Cálculo
-- **Power** = `intercept` + Σ( peso_k * normalizar(métrica_k) * signo_k )  
-  - `signo_k` = -1 para métricas donde menor es mejor (p.ej. `epa_def`, `dvoa_def`).
-- **Prob(A)** = logística( `k * (PowerA - PowerB)` ).
-- Ajustes: `+home_adv` si local, `-temp_weight * Δ` para el menos adaptado, `+/- rest_weight * días`, `- injury_weight * diff`.
+> Puedes adaptar las columnas; la app detecta headers automáticamente.
 
-## Roadmap v3
-- Calibración con históricos (Brier/LogLoss) y guardado de curvas.
-- Pesos automáticos vía regresión/AutoTune.
-- Segmentos por superficie/clima/rivalidad/viaje.
-- Gráficos de distribución y sensibilidad de pesos.
+## Sin dependencias externas
+Incluye un parser CSV mínimo (`js/csv.js`) que soporta comillas y delimitador estándar (RFC4180 básico). No requiere internet.
+
+## Próximos pasos (API)
+Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveedor para traer datos y mapearlos a las columnas.
+
+## Deploy rápido
+- GitHub Pages: sube todo el contenido del zip a un repo `nfl-stats-uploader` y habilita Pages en la carpeta raíz.
+- Cualquier hosting estático: sube todos los archivos y listo.
+
+## URL de proyecto en GitHub Pages
+- Dominio: `https://amante.github.io/NFLSimulator/`
+- Este repo está preparado con `.nojekyll` y workflow `pages.yml`.

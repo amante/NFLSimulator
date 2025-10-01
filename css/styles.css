@@ -1,0 +1,50 @@
+/* NFL Stats Uploader v1 - estilos base */
+:root{
+  --bg:#0b0f14; --card:#121821; --text:#f2f5f7; --muted:#a9b4c0; --accent:#42d392;
+  --border:#1f2a37; --chip:#0f1720; --brand:#3b82f6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:linear-gradient(180deg,#091017, #0b0f14);
+  color:var(--text); font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.header, header{padding-top:32px}
+h1{font-size:28px;margin:0 0 8px 0;display:flex;gap:8px;align-items:center}
+.badge{font-size:12px;background:var(--chip);border:1px solid var(--border);padding:2px 8px;border-radius:999px;color:var(--muted)}
+.subtitle{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+h2{margin:0 0 12px 0;font-size:20px}
+.accent{color:var(--accent)}
+.uploader{
+  border:1px dashed var(--border); border-radius:12px; padding:18px; text-align:center; background:rgba(255,255,255,.01)
+}
+.uploader.drag{background:rgba(66, 211, 146, .08); border-color:var(--accent)}
+.uploader input[type=file]{display:none}
+.hint{margin:8px 0 0 0; color:var(--muted)}
+.toolbar{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.input{
+  flex:1 1 220px; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#0c1219; color:var(--text);
+}
+.btn{
+  border:none; background:var(--brand); color:white; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+}
+.btn.secondary{background:#334155}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);text-decoration:none}
+.btn.outline{background:transparent;border:1px solid var(--brand);color:var(--text)}
+.table-wrap{width:100%; overflow:auto; border:1px solid var(--border); border-radius:12px}
+.table-wrap.empty{border-style:dashed}
+.table{width:100%; border-collapse:collapse; font-size:14px}
+.table th,.table td{padding:10px 12px; border-bottom:1px solid var(--border); white-space:nowrap}
+.table th{position:sticky; top:0; background:#0e1520; text-align:left; cursor:pointer; user-select:none}
+.table th .sort{font-size:11px; color:var(--muted); margin-left:6px}
+.empty-state{padding:28px; color:var(--muted); text-align:center}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.footer .muted{color:var(--muted)}
+.next-steps{margin:0 0 0 18px}
+.schema pre{background:#0c1219;border:1px solid var(--border);border-radius:8px;padding:10px;overflow:auto}

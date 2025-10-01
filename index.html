@@ -1,189 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NFL Win Probabilities — v2</title>
-    <meta name="description" content="Simulador de probabilidades de ganar (NFL) con normalización, factores de localía/clima/descanso/lesiones y pesos por métrica.">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-slate-50 text-slate-900">
-    <header class="max-w-7xl mx-auto px-4 py-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <h1 class="text-3xl font-bold">NFL Win Probabilities <span class="text-sm font-medium text-slate-500 align-top">v2</span></h1>
-        <div class="flex gap-2">
-          <button id="btnExport" class="px-4 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700">Exportar estado</button>
-          <label class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 cursor-pointer">
-            Importar estado
-            <input id="importState" type="file" accept="application/json" class="hidden">
-          </label>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFL Stats Uploader v1</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Sube y visualiza estadísticas de equipos y jugadores NFL desde archivos CSV.">
+</head>
+<body>
+  <header class="container">
+    <h1>🏈 NFL Stats Uploader <span class="badge">v1</span></h1>
+    <p class="subtitle">
+      Carga CSV de <strong>Equipos</strong> y <strong>Jugadores</strong>. Próximamente: conexión por API.
+    </p>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>1) Cargar estadísticas de <span class="accent">Equipos</span></h2>
+      <div class="uploader" data-target="teams">
+        <input type="file" id="teamsFile" accept=".csv" />
+        <label for="teamsFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
       </div>
-      <p class="text-slate-600 mt-1">v2: normalización por z-score/percentil, factores de localía/clima/descanso/lesiones y pesos por métrica ampliados.</p>
-    </header>
+      <div class="toolbar">
+        <input id="teamsSearch" class="input" placeholder="Buscar en equipos..." />
+        <button id="teamsDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/team_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="teamsTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>equipos</b>.</div>
+      </div>
+    </section>
 
-    <main class="max-w-7xl mx-auto px-4 pb-28 space-y-10">
-      <!-- Datos -->
-      <section class="bg-white rounded-2xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4">Datos</h2>
-        <div class="grid lg:grid-cols-3 gap-6">
-          <div>
-            <label class="block text-sm font-medium">Cargar CSV</label>
-            <input id="fileInput" type="file" accept=".csv" class="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-slate-900 file:text-white hover:file:bg-slate-700"/>
-            <p class="text-xs text-slate-500 mt-1">Soporta columnas: team, off_rating, def_rating, special_rating, epa_off, epa_def, dvoa_off, dvoa_def, sos, rest_days, injuries, temp_c, home.</p>
-            <div class="flex items-center gap-2 mt-3">
-              <button id="loadSample" class="px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700">Cargar ejemplo</button>
-              <button id="resetAll" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300">Reiniciar</button>
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Normalización</label>
-            <div class="mt-2 flex items-center gap-3">
-              <label class="flex items-center gap-2">
-                <input id="normalizeZ" type="radio" name="norm" value="z" class="accent-slate-900">
-                <span>Z-score</span>
-              </label>
-              <label class="flex items-center gap-2">
-                <input id="normalizePct" type="radio" name="norm" value="pct" class="accent-slate-900">
-                <span>Percentil</span>
-              </label>
-              <label class="flex items-center gap-2">
-                <input id="normalizeNone" type="radio" name="norm" value="none" class="accent-slate-900">
-                <span>Sin normalizar</span>
-              </label>
-            </div>
-            <p class="text-xs text-slate-500 mt-1">Se aplica a todas las métricas numéricas antes de ponderar.</p>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Modelo logístico</label>
-            <div class="grid grid-cols-2 gap-3 mt-2">
-              <div>
-                <span class="text-xs text-slate-500">Intercepto</span>
-                <input id="w_intercept" type="number" step="0.01" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-              </div>
-              <div>
-                <span class="text-xs text-slate-500">k (pendiente)</span>
-                <input id="w_k" type="number" step="0.01" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-              </div>
-            </div>
-            <p class="text-xs text-slate-500 mt-1">Prob(A) = 1/(1+exp(-k * (PowerA - PowerB))).</p>
-          </div>
+    <section class="card">
+      <h2>2) Cargar estadísticas de <span class="accent">Jugadores</span></h2>
+      <div class="uploader" data-target="players">
+        <input type="file" id="playersFile" accept=".csv" />
+        <label for="playersFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="playersSearch" class="input" placeholder="Buscar en jugadores..." />
+        <button id="playersDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/player_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="playersTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>jugadores</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3) Próximos pasos</h2>
+      <ol class="next-steps">
+        <li>Definir la <b>fuente API</b> (por ejemplo, proveedor comercial o dataset público).</li>
+        <li>Mapear columnas de la API a los nombres usados en CSV.</li>
+        <li>Conectar <code>dataSource.fetchFromAPI()</code> con tu clave y endpoints.</li>
+        <li>Publicar en tu hosting o GitHub Pages.</li>
+      </ol>
+      <details>
+        <summary>Esquema de datos esperado (puedes adaptar columnas)</summary>
+        <div class="schema">
+          <h4>Equipos (team_stats_template.csv)</h4>
+          <pre>Team,Att,Cmp,Cmp%,Yds/Att,PassYds,TD,INT,Rate,1st,1st%,20+,40+,Lng,Sck,SckY</pre>
+          <h4>Jugadores (player_stats_template.csv)</h4>
+          <pre>Player,Team,Pos,GP,PassAtt,PassYds,PassTD,INT,RushAtt,RushYds,RushTD,Rec,RecYds,RecTD,Tackles,Sacks,DefINT,FantasyPts</pre>
         </div>
-      </section>
+      </details>
+    </section>
+  </main>
 
-      <!-- Pesos por métrica -->
-      <section class="bg-white rounded-2xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-3">Pesos por métrica</h2>
-        <div id="weightsPanel" class="grid md:grid-cols-3 gap-4"></div>
-        <p class="text-xs text-slate-500 mt-2">Las métricas defensivas donde valores más bajos son mejores (ej. epa_def, dvoa_def) se aplican con signo negativo por defecto.</p>
-      </section>
+  <footer class="container footer">
+    <div class="left">
+      Hecho para análisis rápidos. <span class="muted">Funciona 100% local en tu navegador.</span>
+    </div>
+    <div class="right">
+      <button id="exportProject" class="btn outline">Exportar vista como HTML</button>
+    </div>
+  </footer>
 
-      <!-- Tabla equipos -->
-      <section class="bg-white rounded-2xl shadow p-6">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold">Equipos</h2>
-          <div class="flex gap-2">
-            <input id="searchInput" placeholder="Buscar..." class="px-3 py-2 rounded-xl bg-slate-100 focus:outline-none focus:ring w-56"/>
-            <button id="recompute" class="px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-700">Recalcular</button>
-          </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="min-w-full text-sm" id="teamsTable">
-            <thead class="text-left bg-slate-100">
-              <tr>
-                <th class="py-2 px-3 rounded-l-xl">Equipo</th>
-                <th class="py-2 px-3">Power</th>
-                <th class="py-2 px-3">Off</th>
-                <th class="py-2 px-3">Def</th>
-                <th class="py-2 px-3">ST</th>
-                <th class="py-2 px-3">EPA_off</th>
-                <th class="py-2 px-3">EPA_def</th>
-                <th class="py-2 px-3 rounded-r-xl">Editar</th>
-              </tr>
-            </thead>
-            <tbody id="teamsTbody" class="divide-y"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Simulador -->
-      <section class="bg-white rounded-2xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4">Simulador de Enfrentamientos</h2>
-        <div class="grid lg:grid-cols-5 gap-4 items-end">
-          <div class="lg:col-span-2">
-            <label class="block text-sm font-medium">Equipo A</label>
-            <select id="teamA" class="w-full px-3 py-2 rounded-xl bg-slate-100"></select>
-          </div>
-          <div class="lg:col-span-2">
-            <label class="block text-sm font-medium">Equipo B</label>
-            <select id="teamB" class="w-full px-3 py-2 rounded-xl bg-slate-100"></select>
-          </div>
-          <div class="lg:col-span-1">
-            <button id="simulate" class="w-full px-4 py-2 rounded-xl bg-rose-600 text-white hover:bg-rose-700">Calcular</button>
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-4 gap-4 mt-6">
-          <div class="p-4 rounded-xl bg-slate-50 border">
-            <h3 class="font-semibold mb-2">Localía</h3>
-            <label class="flex items-center gap-2 text-sm">
-              <input id="homeA" type="checkbox" class="accent-slate-900">
-              A es local
-            </label>
-            <label class="flex items-center gap-2 text-sm mt-2">
-              <input id="homeB" type="checkbox" class="accent-slate-900">
-              B es local
-            </label>
-            <p class="text-xs text-slate-500 mt-2">Solo uno debería ser local; si ambos están off, se asume campo neutral.</p>
-            <div class="mt-3">
-              <label class="text-xs text-slate-500">Ventaja local (ΔPower)</label>
-              <input id="homeAdv" type="number" step="0.1" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-slate-50 border">
-            <h3 class="font-semibold mb-2">Clima</h3>
-            <label class="block text-sm">Temperatura (°C)</label>
-            <input id="tempC" type="number" step="0.1" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-            <div class="grid grid-cols-2 gap-3 mt-2">
-              <div>
-                <span class="text-xs text-slate-500">Neutral (°C)</span>
-                <input id="tempNeutral" type="number" step="0.1" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-              </div>
-              <div>
-                <span class="text-xs text-slate-500">Peso clima</span>
-                <input id="tempWeight" type="number" step="0.01" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-              </div>
-            </div>
-            <p class="text-xs text-slate-500 mt-1">Ajuste lineal por |temp - neutral| aplicado contra el equipo menos adaptado.</p>
-          </div>
-
-          <div class="p-4 rounded-xl bg-slate-50 border">
-            <h3 class="font-semibold mb-2">Descanso</h3>
-            <label class="block text-sm">Diferencia de días de descanso (A - B)</label>
-            <input id="restDiff" type="number" step="1" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-            <label class="block text-xs text-slate-500 mt-2">Peso descanso (ΔPower por día)</label>
-            <input id="restWeight" type="number" step="0.01" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-          </div>
-
-          <div class="p-4 rounded-xl bg-slate-50 border">
-            <h3 class="font-semibold mb-2">Lesiones</h3>
-            <label class="block text-sm">Índice lesiones (A - B)</label>
-            <input id="injDiff" type="number" step="0.1" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-            <label class="block text-xs text-slate-500 mt-2">Peso lesiones (ΔPower por punto)</label>
-            <input id="injWeight" type="number" step="0.01" class="w-full px-3 py-2 rounded-xl bg-slate-100"/>
-          </div>
-        </div>
-
-        <div id="simResult" class="mt-6 p-4 bg-slate-50 rounded-xl border"></div>
-      </section>
-
-      <section class="text-center text-xs text-slate-500">
-        <p>Hecho con ❤️ — Esta es la <strong>v2</strong>. Píde la v3 cuando quieras y la genero completa.</p>
-      </section>
-    </main>
-
-    <script src="app.js"></script>
-  </body>
+  <script type="module" src="js/app.js"></script>
+</body>
 </html>
