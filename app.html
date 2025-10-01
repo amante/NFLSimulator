@@ -587,8 +587,7 @@
       const s = String(r[h] ?? '');
       return /[",
 ]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
-    }).join(','))).join('
-');
+    }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
