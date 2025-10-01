@@ -488,8 +488,6 @@
     <div class="right"><a href="viewer.html" class="btn ghost">Abrir viewer en pestaña separada</a></div>
   </footer>
 
-
-
 <script type="module">
   import { APP_VERSION, BUILD_TIME } from './js/version.js';
   import { renderTable } from './js/table.js';
@@ -545,7 +543,43 @@
   const info = document.getElementById('schedInfo');
   const tableEl = document.getElementById('schedTable');
   const exportBtn = document.getElementById('schedExport');
-      const exportFullBtn = document.getElementById('schedExportFull');
+
+      // ---- CSV utilities ----
+      const CSV_HEADERS = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
+      function csvNeedsQuotes(s){ s = String(s ?? ''); return s.includes('"') || s.includes(',') || s.includes('\n'); }
+      function csvEscape(v){ const s = String(v ?? ''); return csvNeedsQuotes(s) ? `"${s.replace(/"/g,'""')}"` : s; }
+
+      // Export filtered (by week/team)
+      function exportScheduleFiltered(){
+        const w = Number(weekSel.value);
+        const t = teamSel.value;
+        let rows = SCHEDULE_ALL.filter(g => g.Week === w);
+        if (t && t !== 'all') rows = rows.filter(g => g.AwayTeam === t || g.HomeTeam === t);
+        const csv = [CSV_HEADERS.join(',')].concat(rows.map(r => CSV_HEADERS.map(h => csvEscape(r[h])).join(','))).join('\n');
+        const blob = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `schedule_2025_week${w}${t && t!=='all' ? '_'+t : ''}.csv`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      // Export full season
+      function exportScheduleFull(){
+        const rows = Array.isArray(SCHEDULE_ALL) ? SCHEDULE_ALL : [];
+        const csv = [CSV_HEADERS.join(',')].concat(rows.map(r => CSV_HEADERS.map(h => csvEscape(r[h])).join(','))).join('\n');
+        const blob = new Blob([csv], {type:'text/csv'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'schedule_2025_full.csv';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      // Wire events
+      exportBtn && exportBtn.addEventListener('click', exportScheduleFiltered);
+      exportFullBtn && exportFullBtn.addEventListener('click', exportScheduleFull);
+          const exportFullBtn = document.getElementById('schedExportFull');
       const reloadBtn = document.getElementById('schedReload');
   let SCHEDULE_ALL = loadCachedSchedule();
 
@@ -577,16 +611,14 @@
   }
   weekSel.addEventListener('change', applyFilters);
   teamSel.addEventListener('change', applyFilters);
-  exportBtn.addEventListener('click', () => {
-    const w = Number(weekSel.value);
-    const t = teamSel.value;
+  const t = teamSel.value;
     let rows = SCHEDULE_ALL.filter(g => g.Week === w);
     if (t && t !== 'all') rows = rows.filter(g => g.AwayTeam === t || g.HomeTeam === t);
     const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
     const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
       const s = String(r[h] ?? '');
-      return /[",
-]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+      return (s.includes('"') || s.includes(',') || s.includes('
+')) ? `"${s.replace(/"/g, '""')}"` : s;
     }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
@@ -594,15 +626,8 @@
     a.download = `schedule_2025_week${w}${t && t!=='all' ? '_'+t : ''}.csv`;
     a.click();
     URL.revokeObjectURL(a.href);
-  });
-      populateFilters(SCHEDULE_ALL);
-    applyFilters();
-  });
-      SCHEDULE_ALL = await loadSchedule2025(false);
-    populateFilters(SCHEDULE_ALL);
-    applyFilters();
-  });
-  </script>
+});
+</script>
 
 <script>
 if ('serviceWorker' in navigator) {
@@ -614,6 +639,5 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 </body>
-
 
 </html>
