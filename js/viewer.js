@@ -21,12 +21,12 @@ const state = {
 };
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabBtnSummary = document.getElementById('tabBtnSummary');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+  const tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
@@ -73,12 +73,12 @@ const els = {
 };
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabBtnSummary = document.getElementById('tabBtnSummary');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+  const tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];
@@ -117,12 +117,12 @@ function updateMeta() {
     const counts = meta.counts || {teams: state.teams.raw.length, players: state.players.raw.length};
 
   // Tabs
-  var tabBtnTeams = document.getElementById('tabBtnTeams');
-  var tabBtnPlayers = document.getElementById('tabBtnPlayers');
-  var tabBtnSummary = document.getElementById('tabBtnSummary');
-  var tabTeams = document.getElementById('tabTeams');
-  var tabPlayers = document.getElementById('tabPlayers');
-  var tabSummary = document.getElementById('tabSummary');
+  const tabBtnTeams = document.getElementById('tabBtnTeams');
+  const tabBtnPlayers = document.getElementById('tabBtnPlayers');
+  const tabBtnSummary = document.getElementById('tabBtnSummary');
+  const tabTeams = document.getElementById('tabTeams');
+  const tabPlayers = document.getElementById('tabPlayers');
+  const tabSummary = document.getElementById('tabSummary');
 
   function activate(tab){
     const btns = [tabBtnTeams, tabBtnPlayers, tabBtnSummary];

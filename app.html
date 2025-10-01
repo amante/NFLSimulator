@@ -474,6 +474,7 @@
 <button id="schedSaveOffline" class="btn ghost" type="button">Guardar JSON offline</button>
         </div>
         <div id="schedInfo" class="subtitle"></div>
+        <div id="offlineNotice" class="notice" style="display:none">Estás sin conexión. Se usará el JSON offline o el cache local.</div>
         <div id="schedTable" class="table-wrap empty">
           <div class="empty-state">Cargando schedule…</div>
         </div>
@@ -516,6 +517,16 @@
   }
   tabBtns.forEach(btn => btn.addEventListener('click', () => activate(btn.dataset.tab)));
   activate('uploads'); // default
+
+      // Offline banner
+      function setOfflineBanner(){
+        const n = document.getElementById('offlineNotice');
+        if (!n) return;
+        try { n.style.display = (navigator.onLine ? 'none' : 'block'); } catch { n.style.display = 'none'; }
+      }
+      window.addEventListener('online', setOfflineBanner);
+      window.addEventListener('offline', setOfflineBanner);
+      setOfflineBanner();
 
   // Resize iframe
   const iframe = document.getElementById('viewerFrame');

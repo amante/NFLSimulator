@@ -4,6 +4,8 @@ import { SCHEDULE_2025 } from './schedule.js';
 const NS = 'NFLSimulator';
 const SCHED_KEY = `${NS}:schedule:2025`;
 
+function isOnline(){ try { return typeof navigator !== 'undefined' ? navigator.onLine : false; } catch { return false; } }
+
 export function loadCachedSchedule(){
   try { return JSON.parse(localStorage.getItem(SCHED_KEY) || '[]'); } catch { return []; }
 }
@@ -91,12 +93,14 @@ export async function loadSchedule2025(fullReload=false){
     const cached = loadCachedSchedule();
     if (cached?.length >= 250) return cached;
   }
-  const all = [];
-  for (let w=1; w<=18; w++){
-    let rows = [];
-    try { rows = await fetchWeekFromScoreboard(w); }
-    catch (_) { try { rows = await fetchWeekFromCdn(w); } catch { rows = []; } }
-    all.push(...rows.map(normRow));
+  let all = [];
+  if (isOnline()) {
+    for (let w=1; w<=18; w++){
+      let rows = [];
+      try { rows = await fetchWeekFromScoreboard(w); }
+      catch (_) { try { rows = await fetchWeekFromCdn(w); } catch { rows = []; } }
+      all.push(...rows.map(normRow));
+    }
   }
   const out = all.length ? all : SCHEDULE_2025.map(normRow);
   saveCachedSchedule(out);
