@@ -547,7 +547,7 @@
       // ---- CSV utilities ----
       const CSV_HEADERS = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
       function csvNeedsQuotes(s){ s = String(s ?? ''); return s.includes('"') || s.includes(',') || s.includes('\n'); }
-      function csvEscape(v){ const s = String(v ?? ''); return csvNeedsQuotes(s) ? `"${s.replace(/"/g,'""')}"` : s; }
+      function csvEscape(v){ const s = String(v ?? ''); return csvNeedsQuotes(s) ? '"' + s.replace(/"/g,'""') + '"' : s; }"` : s; }
 
       // Export filtered (by week/team)
       function exportScheduleFiltered(){
@@ -617,7 +617,7 @@
     const headers = ['Week','Date','TimeET','AwayTeam','HomeTeam','Network','Notes'];
     const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => {
       const s = String(r[h] ?? '');
-      return (s.includes('"') || s.includes(',') || s.includes('\n')) ? `"${s.replace(/"/g, '""')}"` : s;
+      return (s.includes('"') || s.includes(',') || s.includes('\n')) ? "'" + s.replace(/"/g, '""') + '"' : s;
     }).join(','))).join('\n');
     const blob = new Blob([csv], {type:'text/csv'});
     const a = document.createElement('a');
