@@ -52,7 +52,24 @@
     </section>
 
     <section class="card">
-      <h2>3) Próximos pasos</h2>
+      <h2>3) Cargar <span class="accent">Partidos</span> (por fecha)</h2>
+      <div class="uploader" data-target="games">
+        <input type="file" id="gamesFile" accept=".csv" />
+        <label for="gamesFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="gamesSearch" class="input" placeholder="Buscar en partidos..." />
+        <button id="gamesDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/games_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="gamesTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>partidos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4) Próximos pasos</h2>
       <ol class="next-steps">
         <li>Definir la <b>fuente API</b> (por ejemplo, proveedor comercial o dataset público).</li>
         <li>Mapear columnas de la API a los nombres usados en CSV.</li>

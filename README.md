@@ -46,3 +46,10 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 
 ## v3.1: Tabs superiores en Viewer
 - La vista de estadísticas ahora tiene **tabs superiores**: _Equipos_ y _Jugadores_.
+
+## v3.2: Tab Resumen por fecha (Partidos)
+- Nuevo tab **Resumen** con selector de **fecha** (y navegación de día ±1).
+- Muestra todos los partidos de ese día: hora, equipos, estado y marcador.
+- Click en el nombre de un equipo abre su **perfil**.
+- Carga datos de partidos desde `index.html` (uploader **Partidos**) y persiste en `localStorage`.
+- Plantilla: `samples/games_template.csv`.

@@ -18,6 +18,7 @@
     <nav class="tabs">
       <button id="tabBtnTeams" class="tab-btn active">Equipos</button>
       <button id="tabBtnPlayers" class="tab-btn">Jugadores</button>
+      <button id="tabBtnSummary" class="tab-btn">Resumen</button>
     </nav>
 
     <section id="tabTeams" class="tab-panel active">
@@ -46,8 +47,24 @@
           <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>jugadores</b>.</div>
         </div>
       </div>
+    
+    <section id="tabSummary" class="tab-panel">
+      <div class="card">
+        <h2>Resumen por Fecha</h2>
+        <div class="toolbar">
+          <input id="datePicker" type="date" class="input" />
+          <button id="prevDay" class="btn secondary">◀ Día anterior</button>
+          <button id="nextDay" class="btn secondary">Día siguiente ▶</button>
+          <button id="refreshGames" class="btn ghost">Actualizar</button>
+        </div>
+        <div id="summaryInfo" class="subtitle"></div>
+        <div id="gamesTableSummary" class="table-wrap empty">
+          <div class="empty-state">No hay datos de partidos. Carga un CSV de <b>partidos</b> en la página principal.</div>
+        </div>
+      </div>
     </section>
   </main>
+
 
   <footer class="container footer">
     <div class="left">

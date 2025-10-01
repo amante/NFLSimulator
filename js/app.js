@@ -5,22 +5,28 @@ import { renderTable, sortRows, filterRows } from './table.js';
 const state = {
   teams: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
   players: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
+  games: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
 };
 
 const els = {
   teamsFile: document.getElementById('teamsFile'),
   playersFile: document.getElementById('playersFile'),
+  gamesFile: document.getElementById('gamesFile'),
   teamsTable: document.getElementById('teamsTable'),
   playersTable: document.getElementById('playersTable'),
+  gamesTable: document.getElementById('gamesTable'),
   teamsSearch: document.getElementById('teamsSearch'),
   playersSearch: document.getElementById('playersSearch'),
+  gamesSearch: document.getElementById('gamesSearch'),
   teamsDownloadJSON: document.getElementById('teamsDownloadJSON'),
   playersDownloadJSON: document.getElementById('playersDownloadJSON'),
+  gamesDownloadJSON: document.getElementById('gamesDownloadJSON'),
   exportProject: document.getElementById('exportProject'),
 };
 
 initUploader(document.querySelector('.uploader[data-target="teams"]'), handleTeamsFile);
 initUploader(document.querySelector('.uploader[data-target="players"]'), handlePlayersFile);
+initUploader(document.querySelector('.uploader[data-target="games"]'), handleGamesFile);
 
 els.teamsSearch.addEventListener('input', () => {
   const q = els.teamsSearch.value;
@@ -33,8 +39,15 @@ els.playersSearch.addEventListener('input', () => {
   renderPlayers();
 });
 
+els.gamesSearch.addEventListener('input', () => {
+  const q = els.gamesSearch.value;
+  state.games.view = filterRows(state.games.raw, q);
+  renderGames();
+});
+
 els.teamsDownloadJSON.addEventListener('click', () => downloadJSON(state.teams.view, 'teams.json'));
 els.playersDownloadJSON.addEventListener('click', () => downloadJSON(state.players.view, 'players.json'));
+els.gamesDownloadJSON.addEventListener('click', () => downloadJSON(state.games.view, 'games.json'));
 
 els.exportProject.addEventListener('click', exportHTMLSnapshot);
 // Intentar hidratar desde storage al cargar (por si hay datos previos)
@@ -43,6 +56,7 @@ try {
   const p = loadPlayers();
   if (t?.length) { state.teams.raw = t; state.teams.view = t; renderTeams(); }
   if (p?.length) { state.players.raw = p; state.players.view = p; renderPlayers(); }
+  try { const g = loadGames(); if (g?.length) { state.games.raw = g; state.games.view = g; renderGames(); } } catch {}
 } catch {}
 
 
@@ -84,6 +98,9 @@ function renderTeams() {
 }
 function renderPlayers() {
   renderTable(els.playersTable, maybeSort('players'), key => toggleSort('players', key));
+}
+function renderGames() {
+  renderTable(els.gamesTable, maybeSort('games'), key => toggleSort('games', key));
 }
 
 function maybeSort(kind) {
@@ -155,3 +172,30 @@ export const dataSource = {
     return Promise.resolve({ ok: true, message: 'Simulación API: aún no implementado.' });
   }
 };
+
+
+async function handleGamesFile(file) {
+  const text = await file.text();
+  const { rows } = parseCSV(text);
+  // normalize Date to YYYY-MM-DD if possible (optional)
+  rows.forEach(r => {
+    if (r['Date']) {
+      const s = String(r['Date']).trim();
+      // try parse known formats
+      const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!m) {
+        const d = new Date(s);
+        if (!isNaN(d)) {
+          const y = d.getFullYear();
+          const mo = String(d.getMonth()+1).padStart(2,'0');
+          const da = String(d.getDate()).padStart(2,'0');
+          r['Date'] = `${y}-${mo}-${da}`;
+        }
+      }
+    }
+  });
+  state.games.raw = rows;
+  state.games.view = rows;
+  saveData({ games: rows });
+  renderGames();
+}

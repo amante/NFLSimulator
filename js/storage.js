@@ -3,17 +3,20 @@ const NS = 'NFLSimulator';
 const KEYS = {
   teams: `${NS}:teams`,
   players: `${NS}:players`,
+  games: `${NS}:games`,
   meta: `${NS}:meta`,
 };
 
-export function saveData({ teams, players }) {
+export function saveData({ teams, players, games }) {
   if (teams) localStorage.setItem(KEYS.teams, JSON.stringify(teams));
   if (players) localStorage.setItem(KEYS.players, JSON.stringify(players));
+  if (games) localStorage.setItem(KEYS.games, JSON.stringify(games));
   const meta = loadMeta();
   const now = new Date().toISOString();
   const newMeta = { ...meta, updatedAt: now, counts: {
     teams: (teams ?? loadTeams())?.length || 0,
-    players: (players ?? loadPlayers())?.length || 0
+    players: (players ?? loadPlayers())?.length || 0,
+    games: (games ?? loadGames())?.length || 0
   }};
   localStorage.setItem(KEYS.meta, JSON.stringify(newMeta));
   return newMeta;
@@ -25,6 +28,10 @@ export function loadTeams() {
 export function loadPlayers() {
   try { return JSON.parse(localStorage.getItem(KEYS.players) || '[]'); } catch { return []; }
 }
+export function loadGames() {
+  try { return JSON.parse(localStorage.getItem(KEYS.games) || '[]'); } catch { return []; }
+}
+
 export function loadMeta() {
   try { return JSON.parse(localStorage.getItem(KEYS.meta) || '{}'); } catch { return {}; }
 }
@@ -33,6 +40,7 @@ export function clearAll() {
   localStorage.removeItem(KEYS.teams);
   localStorage.removeItem(KEYS.players);
   localStorage.removeItem(KEYS.meta);
+  localStorage.removeItem(KEYS.games);
 }
 
 // For other modules
