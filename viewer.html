@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFL Stats Viewer</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Visualiza las estadísticas de equipos y jugadores guardadas localmente.">
+</head>
+<body>
+  <header class="container">
+    <h1>🏈 NFL Stats <span class="badge">Viewer</span></h1>
+    <p class="subtitle">Mostrando los datos guardados desde la página de carga. <span id="metaInfo" class="muted"></span></p>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>Equipos</h2>
+      <div class="toolbar">
+        <input id="teamsSearchV" class="input" placeholder="Buscar en equipos..." />
+        <button id="refreshTeams" class="btn secondary">Actualizar</button>
+        <button id="clearData" class="btn ghost">Borrar datos</button>
+      </div>
+      <div id="teamsTableV" class="table-wrap empty">
+        <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>equipos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Jugadores</h2>
+      <div class="toolbar">
+        <input id="playersSearchV" class="input" placeholder="Buscar en jugadores..." />
+        <button id="refreshPlayers" class="btn secondary">Actualizar</button>
+        <a href="index.html" class="btn ghost">Ir a carga</a>
+      </div>
+      <div id="playersTableV" class="table-wrap empty">
+        <div class="empty-state">No se encontraron datos. Vuelve a la página principal y carga un CSV de <b>jugadores</b>.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="left">
+      <span class="muted">Los datos se leen desde tu navegador (localStorage).</span>
+    </div>
+    <div class="right">
+      <a href="index.html" class="btn outline">Volver a la app</a>
+    </div>
+  </footer>
+
+  <script type="module" src="js/viewer.js"></script>
+</body>
+</html>

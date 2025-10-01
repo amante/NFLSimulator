@@ -1,4 +1,5 @@
 import { parseCSV, toJSON } from './csv.js';
+import { saveData, loadTeams, loadPlayers } from './storage.js';
 import { renderTable, sortRows, filterRows } from './table.js';
 
 const state = {
@@ -36,6 +37,14 @@ els.teamsDownloadJSON.addEventListener('click', () => downloadJSON(state.teams.v
 els.playersDownloadJSON.addEventListener('click', () => downloadJSON(state.players.view, 'players.json'));
 
 els.exportProject.addEventListener('click', exportHTMLSnapshot);
+// Intentar hidratar desde storage al cargar (por si hay datos previos)
+try {
+  const t = loadTeams();
+  const p = loadPlayers();
+  if (t?.length) { state.teams.raw = t; state.teams.view = t; renderTeams(); }
+  if (p?.length) { state.players.raw = p; state.players.view = p; renderPlayers(); }
+} catch {}
+
 
 function initUploader(dropzone, onFile) {
   const input = dropzone.querySelector('input[type="file"]');
@@ -57,6 +66,7 @@ async function handleTeamsFile(file) {
   const { rows } = parseCSV(text);
   state.teams.raw = rows;
   state.teams.view = rows;
+  saveData({ teams: rows });
   renderTeams();
 }
 
@@ -65,6 +75,7 @@ async function handlePlayersFile(file) {
   const { rows } = parseCSV(text);
   state.players.raw = rows;
   state.players.view = rows;
+  saveData({ players: rows });
   renderPlayers();
 }
 

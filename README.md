@@ -33,3 +33,8 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 ## URL de proyecto en GitHub Pages
 - Dominio: `https://amante.github.io/NFLSimulator/`
 - Este repo está preparado con `.nojekyll` y workflow `pages.yml`.
+
+## Nueva vista: Viewer (nueva pestaña)
+- Desde `index.html` haz clic en **Ver estadísticas (nueva pestaña)** para abrir `viewer.html`.
+- La vista lee datos desde `localStorage` bajo el namespace `NFLSimulator`.
+- Escucha cambios en vivo (evento `storage`) si cargas nuevos CSV en otra pestaña.
