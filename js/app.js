@@ -1,4 +1,5 @@
 import { parseCSV, toJSON } from './csv.js';
+import { APP_VERSION, BUILD_TIME } from './version.js';
 import { saveData, loadTeams, loadPlayers } from './storage.js';
 import { renderTable, sortRows, filterRows } from './table.js';
 
@@ -7,6 +8,15 @@ const state = {
   players: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
   games: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
 };
+
+
+// Show version/build
+try {
+  document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
+  const meta = document.getElementById('buildMeta');
+  if (meta) meta.textContent = `Versión ${APP_VERSION} • build ${BUILD_TIME}`;
+  document.title = `${document.title} — ${APP_VERSION}`;
+} catch {}
 
 const els = {
   teamsFile: document.getElementById('teamsFile'),

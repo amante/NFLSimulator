@@ -77,3 +77,21 @@ h2{margin:0 0 12px 0;font-size:20px}
 .tab-panel { display:none; }
 .tab-panel.active { display:block; }
     
+
+/* v3.4: version badge */
+.badge.version{background:rgba(59,130,246,.15); border:1px solid var(--brand);}
+.header-meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:6px; color:var(--muted); font-size:12px}
+    
+
+/* v3.5: site-level tabs */
+.site-tabs { display:flex; gap:6px; border-bottom:1px solid var(--border); margin:8px 0 16px 0; padding:0 24px; }
+.site-tab-btn {
+  background:transparent; border:none; color:var(--text); padding:12px 14px; cursor:pointer; font-weight:700;
+  border-bottom:2px solid transparent; opacity:.85;
+}
+.site-tab-btn.active { border-color: var(--brand); opacity:1; }
+.site-tab-panel { display:none; }
+.site-tab-panel.active { display:block; }
+.viewer-iframe { width:100%; min-height:80vh; border:1px solid var(--border); border-radius:12px; background:#0a0f15 }
+.notice{font-size:12px;color:var(--muted);margin-top:6px}
+    

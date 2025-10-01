@@ -10,7 +10,8 @@
 </head>
 <body>
   <header class="container">
-    <h1>🏈 NFL Stats <span class="badge">Viewer</span></h1>
+    <h1>🏈 NFL Stats <span class="badge">Viewer</span> <span class="badge version version-badge">—</span></h1>
+    <div class="header-meta"><span id="buildMeta">Compilando…</span></div>
     <p class="subtitle">Mostrando los datos guardados desde la página de carga. <span id="metaInfo" class="muted"></span></p>
   </header>
 
@@ -55,7 +56,10 @@
           <input id="datePicker" type="date" class="input" />
           <button id="prevDay" class="btn secondary">◀ Día anterior</button>
           <button id="nextDay" class="btn secondary">Día siguiente ▶</button>
-          <button id="refreshGames" class="btn ghost">Actualizar</button>
+          <select id="weekFilter" class="input" style="max-width:140px"></select>
+<select id="teamFilter" class="input" style="max-width:220px"></select>
+<button id="exportCSV" class="btn outline">Exportar CSV</button>
+<button id="refreshGames" class="btn ghost">Actualizar</button>
         </div>
         <div id="summaryInfo" class="subtitle"></div>
         <div id="gamesTableSummary" class="table-wrap empty">

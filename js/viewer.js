@@ -1,5 +1,15 @@
 import { renderTable, sortRows, filterRows } from './table.js';
+import { APP_VERSION, BUILD_TIME } from './version.js';
 import { loadTeams, loadPlayers, loadMeta, clearAll, loadGames } from './storage.js';
+
+
+// Show version/build
+try {
+  document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
+  const meta = document.getElementById('buildMeta');
+  if (meta) meta.textContent = `Versión ${APP_VERSION} • build ${BUILD_TIME}`;
+  document.title = `${document.title} — ${APP_VERSION}`;
+} catch {}
 
 const state = {
   teams: { raw: [], view: [], sortKey: null, sortDir: 'asc' },
@@ -46,6 +56,9 @@ const els = {
   gamesTableSummary: document.getElementById('gamesTableSummary'),
   refreshGames: document.getElementById('refreshGames'),
   summaryInfo: document.getElementById('summaryInfo'),
+  weekFilter: document.getElementById('weekFilter'),
+  teamFilter: document.getElementById('teamFilter'),
+  exportCSV: document.getElementById('exportCSV'),
 };
 
   // Tabs
@@ -182,12 +195,16 @@ function openProfile(kind, id) {
 
 // ===== Summary (games by date) =====
 function ensureDateInit(){
+  populateWeekFilter();
+  populateTeamFilter();
   if (!els.datePicker.value){
     const dates = uniqueGameDates();
     if (dates.length){
       els.datePicker.value = dates[0]; // earliest by default
       renderSummaryForDate(dates[0]);
     }
+  } else {
+    renderSummaryForDate(els.datePicker.value);
   }
 }
 
@@ -224,10 +241,10 @@ els.refreshGames.addEventListener('click', () => {
 });
 
 function renderSummaryForDate(isoDate){
-  const rows = state.games.raw.filter(g => (g['Date'] || '').toString().startsWith(isoDate));
+  const rows = filterRowsByControls(state.games.raw, isoDate);
   if (!rows.length){
     els.gamesTableSummary.classList.add('empty');
-    els.gamesTableSummary.innerHTML = '<div class="empty-state">No hay partidos para esta fecha.</div>';
+    els.gamesTableSummary.innerHTML = '<div class="empty-state">No hay partidos para la selección actual.</div>';
     els.summaryInfo.textContent = '';
     return;
   }
@@ -254,12 +271,65 @@ function renderSummaryForDate(isoDate){
       openProfile('team', a.getAttribute('data-id'));
     });
   });
-  // Info text
-  const wk = rows[0]['Week'] ? ` • Semana ${rows[0]['Week']}` : '';
-  els.summaryInfo.textContent = `${rows.length} partido(s) para ${isoDate}${wk}`;
+  // Info text: show week if unique among filtered rows
+  const weeks = Array.from(new Set(rows.map(r => (r['Week'] ?? '').toString()).filter(Boolean)));
+  const wkTxt = weeks.length === 1 ? ` • Semana ${weeks[0]}` : (weeks.length > 1 ? ` • Semanas ${weeks.join(', ')}` : '');
+  const teamFilterTxt = (els.teamFilter.value && els.teamFilter.value !== 'all') ? ` • Equipo: ${els.teamFilter.value}` : '';
+  els.summaryInfo.textContent = `${rows.length} partido(s) para ${isoDate}${wkTxt}${teamFilterTxt}`;
 }
 
 function escapeHTML(str) {
   return (str ?? "").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+
+
+function populateWeekFilter(){
+  const weeks = Array.from(new Set(state.games.raw.map(g => (g['Week'] ?? '').toString().trim()).filter(Boolean)))
+    .sort((a,b)=> Number(a)-Number(b));
+  els.weekFilter.innerHTML = `<option value="all">Todas las semanas</option>` + weeks.map(w=>`<option value="${w}">Semana ${w}</option>`).join('');
+}
+function populateTeamFilter(){
+  const teams = new Set();
+  state.games.raw.forEach(g => { if (g['AwayTeam']) teams.add(String(g['AwayTeam']).trim()); if (g['HomeTeam']) teams.add(String(g['HomeTeam']).trim()); });
+  const list = Array.from(teams).filter(Boolean).sort();
+  els.teamFilter.innerHTML = `<option value="all">Todos los equipos</option>` + list.map(t=>`<option value="${escapeHTML(t)}">${escapeHTML(t)}</option>`).join('');
+}
+
+// Filter rows by active controls (date + optional week/team)
+function filterRowsByControls(rows, isoDate){
+  let out = rows.filter(g => (g['Date'] || '').toString().startsWith(isoDate));
+  const w = els.weekFilter.value;
+  const t = els.teamFilter.value;
+  if (w && w !== 'all') out = out.filter(g => (g['Week'] ?? '').toString().trim() === w);
+  if (t && t !== 'all') out = out.filter(g => (String(g['AwayTeam']).trim() === t) || (String(g['HomeTeam']).trim() === t));
+  return out;
+}
+
+els.weekFilter.addEventListener('change', () => {
+  if (els.tabSummary?.classList.contains('active')) renderSummaryForDate(els.datePicker.value);
+});
+els.teamFilter.addEventListener('change', () => {
+  if (els.tabSummary?.classList.contains('active')) renderSummaryForDate(els.datePicker.value);
+});
+
+// Export CSV of the currently filtered games
+els.exportCSV.addEventListener('click', () => {
+  const iso = els.datePicker.value || uniqueGameDates()[0] || '';
+  const rows = filterRowsByControls(state.games.raw, iso);
+  const headers = ['Date','Time','Week','AwayTeam','HomeTeam','Venue','Status','ScoreAway','ScoreHome','Spread','Total'];
+  const csv = [headers.join(',')].concat(rows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `games_${iso || 'all'}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+function csvEscape(v){
+  const s = (v ?? '').toString();
+  if (/[",\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+  return s;
 }
 

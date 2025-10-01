@@ -53,3 +53,16 @@ Implementa en `js/app.js` la función `dataSource.fetchFromAPI()` con tu proveed
 - Click en el nombre de un equipo abre su **perfil**.
 - Carga datos de partidos desde `index.html` (uploader **Partidos**) y persiste en `localStorage`.
 - Plantilla: `samples/games_template.csv`.
+
+## v3.3: Filtros en Resumen + Export CSV
+- Filtro por **Semana** y por **Equipo** en el tab Resumen.
+- Botón **Exportar CSV** de la selección actual.
+
+## v3.4: Badge de versión global
+- Todas las páginas muestran **Versión v3.4** y la hora de compilación.
+- El número de versión proviene de `js/version.js` (única fuente).
+
+## v3.5: Tabs a nivel de sitio
+- Nueva página `app.html` con tabs superiores: **Cargas** y **Ver estadísticas** (viewer embebido).
+- `index.html` ahora redirige a `app.html` (se conserva `index_legacy.html`).
+- Badge de versión se mantiene visible.

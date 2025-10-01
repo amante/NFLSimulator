@@ -1,4 +1,14 @@
+
+// Show version/build
+try {
+  document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
+  const meta = document.getElementById('buildMeta');
+  if (meta) meta.textContent = `Versión ${APP_VERSION} • build ${BUILD_TIME}`;
+  document.title = `${document.title} — ${APP_VERSION}`;
+} catch {}
+
 import { loadTeams, loadPlayers } from './storage.js';
+import { APP_VERSION, BUILD_TIME } from './version.js';
 import { renderBarChart } from './charts.js';
 
 const params = new URLSearchParams(location.search);

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFL Stats Uploader v1</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Sube y visualiza estadísticas de equipos y jugadores NFL desde archivos CSV.">
+</head>
+<body>
+  <header class="container">
+    <h1>🏈 NFL Stats Uploader <span class="badge version version-badge">—</span></h1>
+    <div class="header-meta"><span id="buildMeta">Compilando…</span></div>
+    <p class="subtitle">
+      Carga CSV de <strong>Equipos</strong> y <strong>Jugadores</strong>. Ahora con <strong>perfiles</strong> y <strong>gráficos</strong> en el Viewer. Próximamente: conexión por API.
+    </p>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>1) Cargar estadísticas de <span class="accent">Equipos</span></h2>
+      <div class="uploader" data-target="teams">
+        <input type="file" id="teamsFile" accept=".csv" />
+        <label for="teamsFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="teamsSearch" class="input" placeholder="Buscar en equipos..." />
+        <button id="teamsDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/team_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="teamsTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>equipos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) Cargar estadísticas de <span class="accent">Jugadores</span></h2>
+      <div class="uploader" data-target="players">
+        <input type="file" id="playersFile" accept=".csv" />
+        <label for="playersFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="playersSearch" class="input" placeholder="Buscar en jugadores..." />
+        <button id="playersDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/player_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="playersTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>jugadores</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3) Cargar <span class="accent">Partidos</span> (por fecha)</h2>
+      <div class="uploader" data-target="games">
+        <input type="file" id="gamesFile" accept=".csv" />
+        <label for="gamesFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="gamesSearch" class="input" placeholder="Buscar en partidos..." />
+        <button id="gamesDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/games_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="gamesTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>partidos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4) Próximos pasos</h2>
+      <ol class="next-steps">
+        <li>Definir la <b>fuente API</b> (por ejemplo, proveedor comercial o dataset público).</li>
+        <li>Mapear columnas de la API a los nombres usados en CSV.</li>
+        <li>Conectar <code>dataSource.fetchFromAPI()</code> con tu clave y endpoints.</li>
+        <li>Publicar en tu hosting o GitHub Pages.</li>
+      </ol>
+      <details>
+        <summary>Esquema de datos esperado (puedes adaptar columnas)</summary>
+        <div class="schema">
+          <h4>Equipos (team_stats_template.csv)</h4>
+          <pre>Team,Att,Cmp,Cmp%,Yds/Att,PassYds,TD,INT,Rate,1st,1st%,20+,40+,Lng,Sck,SckY</pre>
+          <h4>Jugadores (player_stats_template.csv)</h4>
+          <pre>Player,Team,Pos,GP,PassAtt,PassYds,PassTD,INT,RushAtt,RushYds,RushTD,Rec,RecYds,RecTD,Tackles,Sacks,DefINT,FantasyPts</pre>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="left">
+      Hecho para análisis rápidos. <span class="muted">Funciona 100% local en tu navegador.</span>
+    </div>
+    <div class="right">
+      <a href="viewer.html" target="_blank" class="btn outline">Ver estadísticas (nueva pestaña)</a>
+      <button id="exportProject" class="btn outline">Exportar vista como HTML</button>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

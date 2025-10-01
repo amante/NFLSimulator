@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFL Simulator — App</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Cargar y ver estadísticas NFL en una sola interfaz con tabs.">
+</head>
+<body>
+  <header class="container">
+    <h1>🏈 NFL Simulator <span class="badge version version-badge">—</span></h1>
+    <div class="header-meta"><span id="buildMeta">Compilando…</span></div>
+    <p class="subtitle">Organización por tabs: <b>Cargas</b> y <b>Ver estadísticas</b>.</p>
+  </header>
+
+  <main class="container">
+    <nav class="site-tabs">
+      <button id="siteTabBtnUploads" class="site-tab-btn active">Cargas</button>
+      <button id="siteTabBtnViewer" class="site-tab-btn">Ver estadísticas</button>
+    </nav>
+
+    <section id="siteTabUploads" class="site-tab-panel active">
+      <!-- Upload UI injected from legacy index -->
+      
+    <section class="card">
+      <h2>1) Cargar estadísticas de <span class="accent">Equipos</span></h2>
+      <div class="uploader" data-target="teams">
+        <input type="file" id="teamsFile" accept=".csv" />
+        <label for="teamsFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="teamsSearch" class="input" placeholder="Buscar en equipos..." />
+        <button id="teamsDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/team_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="teamsTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>equipos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) Cargar estadísticas de <span class="accent">Jugadores</span></h2>
+      <div class="uploader" data-target="players">
+        <input type="file" id="playersFile" accept=".csv" />
+        <label for="playersFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="playersSearch" class="input" placeholder="Buscar en jugadores..." />
+        <button id="playersDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/player_stats_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="playersTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>jugadores</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3) Cargar <span class="accent">Partidos</span> (por fecha)</h2>
+      <div class="uploader" data-target="games">
+        <input type="file" id="gamesFile" accept=".csv" />
+        <label for="gamesFile" class="btn">Seleccionar CSV</label>
+        <p class="hint">o arrastra y suelta el archivo aquí</p>
+      </div>
+      <div class="toolbar">
+        <input id="gamesSearch" class="input" placeholder="Buscar en partidos..." />
+        <button id="gamesDownloadJSON" class="btn secondary">Descargar JSON</button>
+        <a href="samples/games_template.csv" class="btn ghost">Descargar plantilla</a>
+      </div>
+      <div id="gamesTable" class="table-wrap empty">
+        <div class="empty-state">Aún no cargas datos de <b>partidos</b>.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4) Próximos pasos</h2>
+      <ol class="next-steps">
+        <li>Definir la <b>fuente API</b> (por ejemplo, proveedor comercial o dataset público).</li>
+        <li>Mapear columnas de la API a los nombres usados en CSV.</li>
+        <li>Conectar <code>dataSource.fetchFromAPI()</code> con tu clave y endpoints.</li>
+        <li>Publicar en tu hosting o GitHub Pages.</li>
+      </ol>
+      <details>
+        <summary>Esquema de datos esperado (puedes adaptar columnas)</summary>
+        <div class="schema">
+          <h4>Equipos (team_stats_template.csv)</h4>
+          <pre>Team,Att,Cmp,Cmp%,Yds/Att,PassYds,TD,INT,Rate,1st,1st%,20+,40+,Lng,Sck,SckY</pre>
+          <h4>Jugadores (player_stats_template.csv)</h4>
+          <pre>Player,Team,Pos,GP,PassAtt,PassYds,PassTD,INT,RushAtt,RushYds,RushTD,Rec,RecYds,RecTD,Tackles,Sacks,DefINT,FantasyPts</pre>
+        </div>
+      </details>
+    </section>
+  
+      <div class="notice">Tip: los datos se guardan en <code>localStorage</code>. Al cambiar al tab <b>Ver estadísticas</b>, se mostrarán de inmediato.</div>
+    </section>
+
+    <section id="siteTabViewer" class="site-tab-panel">
+      <div class="card">
+        <h2>Viewer embebido</h2>
+        <p class="subtitle">Incluye tabs de <b>Equipos</b>, <b>Jugadores</b> y <b>Resumen por fecha</b> con filtros.</p>
+        <iframe id="viewerFrame" class="viewer-iframe" src="viewer.html" title="NFL Stats Viewer"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div class="left">Versión: se muestra en el encabezado. <span class="muted">Funciona local y en GitHub Pages.</span></div>
+    <div class="right"><a href="viewer.html" class="btn ghost">Abrir viewer en pestaña separada</a></div>
+  </footer>
+
+  <script type="module">
+    import { APP_VERSION, BUILD_TIME } from './js/version.js';
+    // Show version/build (avoid template literals to sidestep curly issues)
+    try {
+      document.querySelectorAll('.version-badge').forEach(el => el.textContent = APP_VERSION);
+      const meta = document.getElementById('buildMeta');
+      if (meta) meta.textContent = 'Versión ' + APP_VERSION + ' • build ' + BUILD_TIME;
+      document.title = document.title + ' — ' + APP_VERSION;
+    } catch {};
+
+    // Site-level tabs
+    const btnU = document.getElementById('siteTabBtnUploads');
+    const btnV = document.getElementById('siteTabBtnViewer');
+    const tabU = document.getElementById('siteTabUploads');
+    const tabV = document.getElementById('siteTabViewer');
+    function activate(which) {
+      if (which === 'uploads') {
+        btnU.classList.add('active'); tabU.classList.add('active');
+        btnV.classList.remove('active'); tabV.classList.remove('active');
+      } else {
+        btnV.classList.add('active'); tabV.classList.add('active');
+        btnU.classList.remove('active'); tabU.classList.remove('active');
+      }
+    }
+    btnU.addEventListener('click', () => activate('uploads'));
+    btnV.addEventListener('click', () => activate('viewer'));
+
+    // Auto-resize iframe to viewport
+    const iframe = document.getElementById('viewerFrame');
+    function resizeIframe() {
+      const rect = iframe.getBoundingClientRect();
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      iframe.style.minHeight = Math.max( vh - rect.top - 24, 500 ) + 'px';
+    }
+    window.addEventListener('resize', resizeIframe);
+    window.addEventListener('load', resizeIframe);
+  </script>
+
+  <!-- Load app modules so the upload UI works inside this page -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
